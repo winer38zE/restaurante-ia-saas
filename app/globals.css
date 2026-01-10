@@ -1,8 +1,10 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #0a0a0a; /* Fondo oscuro forzado */
+  --foreground: #ededed;
   --primary: #10b981;
   --glass: rgba(10, 10, 10, 0.6);
   --border-emerald: rgba(16, 185, 129, 0.2);
