@@ -1,66 +1,89 @@
 "use client"
 
-import { Activity, TrendingUp, DollarSign, Terminal, ShieldCheck } from "lucide-react"
+import { Activity, TrendingUp, DollarSign, ShieldCheck, ArrowUpRight, ArrowDownRight, MoreHorizontal } from "lucide-react"
 
 export default function Contabilidad2026() {
     return (
-        <div className="min-h-screen bg-black text-primary p-6 lg:p-12 font-mono">
-            <header className="mb-20 border-b border-primary/10 pb-10">
-                <h1 className="text-5xl font-black uppercase italic tracking-tighter">Terminal <span className="text-white">Contable</span></h1>
-                <p className="text-sm opacity-40 mt-4">Auditoría síncrona de ingresos y egresos.</p>
+        <div className="min-h-screen bg-gradient-cryptify text-white p-6 lg:p-10 font-sans">
+            <header className="mb-12">
+                <h1 className="text-3xl font-bold tracking-tight mb-2">Terminal <span className="text-emerald-400">Contable</span></h1>
+                <p className="text-zinc-400 text-sm">Auditoría síncrona de ingresos, egresos y proyecciones.</p>
             </header>
 
-            <div className="grid lg:grid-cols-2 gap-10">
-                <div className="command-card space-y-10">
-                    <div className="flex justify-between border-b border-primary/10 pb-6">
-                        <span className="terminal-text">Resumen_Finanzas</span>
-                        <ShieldCheck className="w-4 h-4" />
+            <div className="grid lg:grid-cols-2 gap-8">
+                {/* Financial Summary Card */}
+                <div className="glass-panel p-8 space-y-8">
+                    <div className="flex justify-between items-center border-b border-white/5 pb-6">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-emerald-500/10 rounded-lg text-emerald-400">
+                                <Activity className="w-5 h-5" />
+                            </div>
+                            <span className="font-bold text-lg">Resumen Financiero</span>
+                        </div>
+                        <button className="p-2 hover:bg-white/5 rounded-lg text-zinc-500 hover:text-white transition-colors">
+                            <MoreHorizontal className="w-5 h-5" />
+                        </button>
                     </div>
-                    <div className="space-y-6">
+
+                    <div className="space-y-4">
                         {[
-                            { label: "Rev Bruta", val: "$14,200,000" },
-                            { label: "Costos Fijos", val: "$4,200,000" },
-                            { label: "Insumos (IA Opt)", val: "$2,800,000" },
-                            { label: "Nomina", val: "$3,100,000" },
+                            { label: "Ingresos Brutos", val: "$14,200,000", bg: "bg-emerald-500/5", text: "text-white" },
+                            { label: "Costos Fijos", val: "$4,200,000", bg: "bg-white/5", text: "text-zinc-300" },
+                            { label: "Insumos (IA Opt)", val: "$2,800,000", bg: "bg-blue-500/5", text: "text-blue-200" },
+                            { label: "Nómina Operativa", val: "$3,100,000", bg: "bg-white/5", text: "text-zinc-300" },
                         ].map((row, i) => (
-                            <div key={i} className="flex justify-between text-xs">
-                                <span className="opacity-40 uppercase tracking-widest">{row.label}</span>
-                                <span className="font-bold underline decoration-primary/20">{row.val}</span>
+                            <div key={i} className={`flex justify-between items-center p-4 rounded-xl ${row.bg}`}>
+                                <span className="text-xs uppercase tracking-wider font-medium opacity-60">{row.label}</span>
+                                <span className={`font-bold font-mono ${row.text}`}>{row.val}</span>
                             </div>
                         ))}
                     </div>
-                    <div className="pt-10 border-t border-primary/10 flex justify-between items-end">
+
+                    <div className="pt-8 border-t border-white/5 flex justify-between items-end">
                         <div>
-                            <p className="terminal-text opacity-40">Utilidad Neta</p>
-                            <h2 className="text-4xl font-black italic">$4,100,000</h2>
+                            <p className="text-zinc-500 text-xs uppercase tracking-widest mb-1">Utilidad Neta</p>
+                            <h2 className="text-4xl font-bold text-white tracking-tight">$4,100,000</h2>
                         </div>
                         <div className="text-right">
-                            <p className="text-[10px] font-bold text-white bg-primary px-2 py-0.5 mb-2">KPI: Saludable</p>
-                            <span className="terminal-text opacity-20">ROI: 32%</span>
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-widest mb-2">
+                                <ShieldCheck className="w-3 h-3" /> Saludable
+                            </div>
+                            <p className="text-xs text-zinc-500 font-medium">ROI: 32%</p>
                         </div>
                     </div>
                 </div>
 
-                <div className="space-y-10">
-                    <div className="command-card bg-primary/5 border-primary/40">
-                        <h3 className="terminal-text mb-6">Nota de Auditoría IA</h3>
-                        <p className="text-xs leading-relaxed">
-                            "Se detectó un excedente de $400k en el rubro de 'Bebidas Alcoholicas'. El flujo sugiere que el inventario no está rotando según lo proyectado. Se recomienda reducción de pedido para el ciclo 04."
+                {/* Audit & Alerts Column */}
+                <div className="space-y-8">
+                    <div className="glass-panel p-8 border-l-4 border-l-orange-500 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+                            <ShieldCheck className="w-24 h-24" />
+                        </div>
+                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-white">
+                            <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+                            Nota de Auditoría IA
+                        </h3>
+                        <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+                            "Se detectó un excedente de <strong className="text-white">$400k</strong> en el rubro de 'Bebidas Alcohólicas'. El flujo sugiere que el inventario no está rotando según lo proyectado. Se recomienda reducción de pedido para el ciclo 04."
                         </p>
+                        <button className="text-xs font-bold uppercase tracking-widest text-orange-400 hover:text-orange-300 transition-colors">
+                            Ver Detalles &rarr;
+                        </button>
                     </div>
-                    <div className="luxury-card border-none bg-black ring-1 ring-primary/20 flex items-center justify-between p-10">
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
+
+                    <div className="glass-panel p-8 flex items-center justify-between group cursor-pointer hover:bg-white/[0.03] transition-colors">
+                        <div className="flex items-center gap-5">
+                            <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
                                 <TrendingUp className="w-6 h-6" />
                             </div>
                             <div>
-                                <h4 className="text-xl font-bold italic">Plan de Expansión</h4>
-                                <p className="text-[8px] opacity-40 uppercase tracking-widest">Predicción: Posible en 3 meses</p>
+                                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Plan de Expansión</h4>
+                                <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Predicción: Posible en 3 meses</p>
                             </div>
                         </div>
-                        <button className="w-12 h-12 border border-primary flex items-center justify-center hover:bg-primary hover:text-black transition-all">
-                            +
-                        </button>
+                        <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 group-hover:bg-emerald-500 group-hover:text-black group-hover:border-emerald-500 transition-all">
+                            <ArrowUpRight className="w-5 h-5" />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,14 +1,16 @@
 "use client"
 
 import {
-    Activity,
     TrendingUp,
     DollarSign,
+    Target,
+    Shield,
+    Users,
     ArrowUpRight,
-    ShieldAlert,
-    Cpu,
-    BarChart3,
-    Terminal
+    ArrowDownRight,
+    Bell,
+    Settings,
+    Search
 } from "lucide-react"
 import {
     AreaChart,
@@ -21,119 +23,189 @@ import {
 } from "recharts"
 
 const data = [
-    { name: "00:00", ingresos: 4000, gastos: 2400 },
-    { name: "04:00", ingresos: 3000, gastos: 1398 },
-    { name: "08:00", ingresos: 2000, gastos: 9800 },
-    { name: "12:00", ingresos: 2780, gastos: 3908 },
-    { name: "16:00", ingresos: 1890, gastos: 4800 },
-    { name: "20:00", ingresos: 2390, gastos: 3800 },
-    { name: "23:59", ingresos: 3490, gastos: 4300 },
+    { name: "00:00", value: 4000 },
+    { name: "04:00", value: 3000 },
+    { name: "08:00", value: 5000 },
+    { name: "12:00", value: 2780 },
+    { name: "16:00", value: 6890 },
+    { name: "20:00", value: 8390 },
+    { name: "23:59", value: 9490 },
 ]
 
-// Lógica de Cobro $100 COP (Config Object)
-const SaaSConfig = {
-    plan: "Híbrido",
-    basePrice: 40000,
-    feePerOrder: 100,
-}
-
 export default function AdminDashboard() {
-    const totalOrders = 142
-    const comisionPlataforma = totalOrders * SaaSConfig.feePerOrder
-
     return (
-        <div className="min-h-screen bg-black text-primary p-6 lg:p-12 font-mono">
-            {/* Dashboard Header */}
-            <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-16 border-b border-primary/10 pb-10">
-                <div>
-                    <div className="flex items-center gap-2 terminal-text mb-4 opacity-40">
-                        <Terminal className="w-4 h-4" /> CMD_CENTER_ACCESS
+        <div className="min-h-screen bg-gradient-cryptify text-white p-6 lg:p-8 font-sans">
+            {/* Top Navigation Bar */}
+            <header className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+                <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                        <Target className="text-black w-6 h-6" />
                     </div>
-                    <h1 className="text-5xl font-black uppercase italic tracking-tighter">Dashboard <span className="text-white">v2.6</span></h1>
+                    <div>
+                        <h1 className="text-2xl font-bold tracking-tight text-gradient">Santuario<span className="text-emerald-500">.io</span></h1>
+                        <p className="text-xs text-zinc-400 tracking-wider uppercase font-medium">Enterprise Dashboard</p>
+                    </div>
                 </div>
-                <div className="flex gap-4">
-                    <div className="command-card py-3 px-6 border-primary/40 bg-primary/5">
-                        <p className="terminal-text opacity-40 mb-1">Fee Plataforma (Híbrido)</p>
-                        <p className="text-2xl font-black italic">$ {comisionPlataforma.toLocaleString()}</p>
+
+                <div className="flex items-center gap-4 bg-white/[0.03] p-1.5 rounded-full border border-white/10 backdrop-blur-md">
+                    <div className="px-6 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium">
+                        Estado: Operativo
                     </div>
+                    <button className="p-2 hover:bg-white/5 rounded-full transition-colors text-zinc-400 hover:text-white">
+                        <Search className="w-5 h-5" />
+                    </button>
+                    <button className="p-2 hover:bg-white/5 rounded-full transition-colors text-zinc-400 hover:text-white">
+                        <Bell className="w-5 h-5" />
+                    </button>
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-zinc-700 to-zinc-600 border border-white/10" />
                 </div>
             </header>
 
-            {/* KPI Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                {[
-                    { label: "Rev Totales", value: "$14.2M", icon: <DollarSign className="w-4 h-4" /> },
-                    { label: "Margen Operativo", value: "32.4%", icon: <Activity className="w-4 h-4" /> },
-                    { label: "Ordenes IA", value: totalOrders.toString(), icon: <Cpu className="w-4 h-4" /> },
-                    { label: "Alertas Crit", value: "02", icon: <ShieldAlert className="w-4 h-4 text-red-500" /> },
-                ].map((kpi, i) => (
-                    <div key={i} className="command-card relative group">
-                        <div className="absolute top-4 right-4 text-primary/20 group-hover:text-primary transition-colors">
-                            {kpi.icon}
-                        </div>
-                        <p className="terminal-text opacity-40 mb-2">{kpi.label}</p>
-                        <h3 className="text-3xl font-black italic">{kpi.value}</h3>
-                    </div>
-                ))}
-            </div>
-
-            {/* Main Chart Area */}
-            <div className="grid lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2 command-card min-h-[500px] flex flex-col">
-                    <div className="flex justify-between items-center mb-10">
-                        <div className="flex items-center gap-3">
-                            <BarChart3 className="w-5 h-5" />
-                            <span className="terminal-text">Flujo de Capital Intra-día</span>
-                        </div>
-                        <div className="flex gap-6 terminal-text opacity-40">
-                            <span className="flex items-center gap-2"><div className="w-2 h-2 bg-primary rounded-full" /> Ingresos</span>
-                            <span className="flex items-center gap-2"><div className="w-2 h-2 bg-white rounded-full" /> Gastos</span>
-                        </div>
+            {/* Hero Section */}
+            <div className="grid lg:grid-cols-3 gap-8 mb-12">
+                <div className="lg:col-span-2">
+                    <div className="mb-8">
+                        <h2 className="text-4xl md:text-5xl font-medium mb-4 leading-tight">
+                            Master your <br />
+                            <span className="text-gradient-primary font-bold">Business Intelligence</span>
+                        </h2>
+                        <p className="text-zinc-400 max-w-md text-lg">
+                            Navega la complejidad de tu operación con métricas en tiempo real y guía estratégica de IA.
+                        </p>
                     </div>
 
-                    <div className="flex-1 w-full">
+                    <div className="flex gap-4">
+                        <button className="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-emerald-400 transition-colors">
+                            Ver Reporte
+                        </button>
+                        <button className="px-8 py-3 rounded-full font-bold text-white border border-white/20 hover:bg-white/5 transition-colors">
+                            Configuración
+                        </button>
+                    </div>
+                </div>
+
+                {/* Main Trend Card */}
+                <div className="glass-panel p-6 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-6 opacity-50 group-hover:opacity-100 transition-opacity">
+                        <ArrowUpRight className="w-6 h-6 text-emerald-500" />
+                    </div>
+                    <div className="mb-6">
+                        <p className="text-sm text-zinc-500 uppercase tracking-wider font-medium mb-1">Rendimiento Actual</p>
+                        <div className="flex items-end gap-3">
+                            <h3 className="text-3xl font-bold text-white">$14,240.00</h3>
+                            <span className="text-emerald-500 text-sm font-bold bg-emerald-500/10 px-2 py-0.5 rounded mb-1">+5.6%</span>
+                        </div>
+                    </div>
+
+                    <div className="h-[120px] w-full">
                         <ResponsiveContainer width="100%" height="100%">
                             <AreaChart data={data}>
                                 <defs>
-                                    <linearGradient id="colorIngresos" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.2} />
+                                    <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
                                         <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
                                     </linearGradient>
                                 </defs>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#10b981" opacity={0.05} vertical={false} />
-                                <XAxis dataKey="name" hide />
-                                <YAxis hide />
-                                <Tooltip
-                                    contentStyle={{ backgroundColor: '#000', border: '1px solid rgba(16,185,129,0.2)', borderRadius: '0', fontSize: '10px', textTransform: 'uppercase' }}
-                                    itemStyle={{ color: '#10b981' }}
-                                />
-                                <Area type="monotone" dataKey="ingresos" stroke="#10b981" strokeWidth={2} fillOpacity={1} fill="url(#colorIngresos)" />
-                                <Area type="monotone" dataKey="gastos" stroke="#ffffff" strokeWidth={1} fillOpacity={0} strokeDasharray="5 5" />
+                                <Area type="monotone" dataKey="value" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorValue)" />
                             </AreaChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
+            </div>
 
-                {/* System Message Log */}
-                <div className="command-card flex flex-col">
-                    <h4 className="terminal-text mb-8 border-b border-primary/10 pb-4">Log de Sistema IA</h4>
-                    <div className="space-y-6 overflow-y-auto pr-2 no-scrollbar">
-                        {[
-                            { t: "14:02", m: "Optimización de precios activa para 'Sushimi Elite'." },
-                            { t: "12:45", m: "Alerta: El costo de carne subió un 12%. Ver Mentor IA." },
-                            { t: "10:30", m: "Resumen matutino generado con éxito." },
-                            { t: "09:00", m: "Uplink estable con Supabase DB." },
-                        ].map((log, i) => (
-                            <div key={i} className="flex gap-4 group">
-                                <span className="text-[8px] opacity-20 group-hover:opacity-100 transition-opacity">{log.t}</span>
-                                <p className="text-[10px] leading-relaxed group-hover:text-white transition-colors">&gt;&gt; {log.m}</p>
+            {/* Metrics Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                {[
+                    { label: "Ingresos Totales", value: "$42.5K", trend: "+12%", icon: DollarSign },
+                    { label: "Usuarios Activos", value: "1,240", trend: "+8.1%", icon: Users },
+                    { label: "Salud del Sistema", value: "98.2%", trend: "+2.4%", icon: Shield },
+                    { label: "Crecimiento IA", value: "+24%", trend: "Auto", icon: TrendingUp },
+                ].map((stat, i) => (
+                    <div key={i} className="glass-panel p-6 flex flex-col justify-between min-h-[160px]">
+                        <div className="flex justify-between items-start mb-4">
+                            <div className="p-3 rounded-xl bg-white/5 text-emerald-400">
+                                <stat.icon className="w-5 h-5" />
                             </div>
-                        ))}
+                            <span className="text-emerald-500 text-xs font-bold bg-emerald-500/10 px-2 py-1 rounded-full">
+                                {stat.trend}
+                            </span>
+                        </div>
+                        <div>
+                            <p className="text-zinc-500 text-xs uppercase tracking-wider font-medium mb-1">{stat.label}</p>
+                            <h4 className="text-2xl font-bold text-white">{stat.value}</h4>
+                        </div>
                     </div>
-                    <div className="mt-auto pt-8">
-                        <button className="w-full border border-primary/20 py-4 text-[10px] uppercase font-black tracking-widest hover:bg-primary/5 transition-all">
-                            Ver Reportes_Full
-                        </button>
+                ))}
+            </div>
+
+            {/* Bottom Sections */}
+            <div className="grid lg:grid-cols-2 gap-8">
+                {/* News / Strategies */}
+                <div className="glass-panel p-8 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 blur-[80px] rounded-full pointer-events-none" />
+
+                    <div className="flex justify-between items-center mb-6">
+                        <h3 className="text-xl font-bold">Estrategias IA</h3>
+                        <div className="flex gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                            <span className="w-2 h-2 rounded-full bg-zinc-700" />
+                            <span className="w-2 h-2 rounded-full bg-zinc-700" />
+                        </div>
+                    </div>
+
+                    <div className="space-y-6">
+                        <div className="flex gap-4 items-center group cursor-pointer hover:bg-white/5 p-4 -mx-4 rounded-xl transition-colors">
+                            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex-shrink-0 flex items-center justify-center text-2xl font-bold text-white/50">
+                                01
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-lg mb-1 group-hover:text-emerald-400 transition-colors">Optimización de Menú</h4>
+                                <p className="text-sm text-zinc-400 leading-relaxed">
+                                    Nuestros algoritmos sugieren reducir un 15% el inventario de perecederos esta semana.
+                                </p>
+                            </div>
+                            <ArrowUpRight className="w-5 h-5 text-zinc-600 group-hover:text-emerald-400 ml-auto" />
+                        </div>
+
+                        <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+                            <div className="h-full bg-gradient-to-r from-emerald-500 to-emerald-300 w-3/4" />
+                        </div>
+                        <div className="flex justify-between text-xs text-zinc-500 uppercase tracking-wider">
+                            <span>Progreso de implementación</span>
+                            <span className="text-emerald-400">75%</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Investment Growth / Extra */}
+                <div className="glass-panel p-8 flex flex-col justify-center relative overflow-hidden">
+                    <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-emerald-900/10 to-transparent pointer-events-none" />
+
+                    <div className="mb-auto">
+                        <h3 className="text-xl font-bold mb-2">Proyección Financiera</h3>
+                        <p className="text-zinc-400 text-sm">Crecimiento estimado basado en tendencias actuales.</p>
+                    </div>
+
+                    <div className="flex items-end gap-2 mt-8">
+                        <span className="text-4xl font-bold text-white">+15%</span>
+                        <span className="text-zinc-500 mb-1">vs mes anterior</span>
+                    </div>
+
+                    <div className="mt-8 flex gap-4">
+                        <div className="flex-1 h-32 rounded-xl bg-white/5 border border-white/5 relative overflow-hidden p-4 hover:border-emerald-500/30 transition-colors group">
+                            <p className="text-xs text-zinc-500 uppercase">Conservador</p>
+                            <p className="text-xl font-bold mt-1">$45k</p>
+                            <div className="absolute bottom-0 right-0 p-3 opacity-20 group-hover:opacity-100 transition-opacity">
+                                <ArrowDownRight className="w-6 h-6" />
+                            </div>
+                        </div>
+                        <div className="flex-1 h-32 rounded-xl bg-emerald-500/10 border border-emerald-500/20 relative overflow-hidden p-4 group">
+                            <p className="text-xs text-emerald-300 uppercase">Agresivo</p>
+                            <p className="text-xl font-bold mt-1 text-emerald-400">$62k</p>
+                            <div className="absolute bottom-0 right-0 p-3">
+                                <ArrowUpRight className="w-6 h-6 text-emerald-500" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

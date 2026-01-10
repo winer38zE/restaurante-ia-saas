@@ -5,11 +5,10 @@ import {
     DollarSign,
     BrainCircuit,
     Target,
-    ArrowUpRight,
     ShieldCheck,
     Cpu,
-    Zap,
-    ChevronRight
+    ChevronRight,
+    ArrowUpRight
 } from "lucide-react"
 import {
     AreaChart,
@@ -32,72 +31,87 @@ const data = [
 
 export default function FinanzasBrain() {
     return (
-        <div className="max-w-7xl mx-auto space-y-12">
-            {/* Header Luxury */}
-            <div className="flex flex-col md:row justify-between items-start md:items-end gap-6 border-b border-white/5 pb-10">
+        <div className="min-h-screen bg-gradient-cryptify p-6 lg:p-10 font-sans text-white">
+            {/* Header */}
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
                 <div>
-                    <h1 className="text-6xl font-black tracking-tighter glow-text">Cerebro <span className="text-primary italic">IA</span></h1>
-                    <p className="text-lg text-white/40 font-medium mt-2">Gestión de utilidad neta para imperios gastronómicos.</p>
+                    <div className="flex items-center gap-2 mb-2">
+                        <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                            Finanzas
+                        </span>
+                    </div>
+                    <h1 className="text-4xl font-bold tracking-tight mb-2">Cerebro <span className="text-emerald-400">IA</span></h1>
+                    <p className="text-zinc-400 max-w-xl text-sm leading-relaxed">
+                        Gestión de utilidad neta y proyecciones en tiempo real para imperios gastronómicos.
+                    </p>
                 </div>
-                <div className="flex gap-4">
-                    <div className="px-6 py-3 rounded-full border border-primary/20 bg-primary/5 flex items-center gap-2">
-                        <ShieldCheck className="w-4 h-4 text-primary" />
-                        <span className="text-[10px] font-black uppercase tracking-widest text-primary">Nivel Elite Activo</span>
+                <div className="glass-panel px-6 py-4 flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                        <ShieldCheck className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <p className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">Estado</p>
+                        <p className="text-sm font-bold text-white">Nivel Elite Activo</p>
                     </div>
                 </div>
             </div>
 
             {/* Main KPI Matrix */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="luxury-card neon-border">
-                    <div className="flex justify-between items-start mb-6">
-                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                            <DollarSign className="w-6 h-6" />
-                        </div>
-                        <span className="text-[10px] font-black text-primary">+14.2%</span>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="glass-panel p-8 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-8 opacity-20 text-emerald-500 group-hover:scale-110 transition-transform">
+                        <DollarSign className="w-12 h-12" />
                     </div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-1">Margen de Contribución</p>
-                    <h2 className="text-4xl font-black tracking-tighter">$24,800,000</h2>
+                    <div className="mb-4">
+                        <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Margen de Contribución</p>
+                        <h2 className="text-4xl font-bold tracking-tight text-white">$24.8M</h2>
+                    </div>
+                    <div className="inline-flex items-center gap-1 px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 text-xs font-bold">
+                        <TrendingUp className="w-3 h-3" /> +14.2%
+                    </div>
                 </div>
 
-                <div className="luxury-card">
-                    <div className="flex justify-between items-start mb-6">
-                        <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-white/40">
-                            <Target className="w-6 h-6" />
-                        </div>
+                <div className="glass-panel p-8 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-8 opacity-10 text-white group-hover:scale-110 transition-transform">
+                        <Target className="w-12 h-12" />
                     </div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-1">Punto de Equilibrio</p>
-                    <h2 className="text-4xl font-black tracking-tighter">Día 12 <span className="text-sm font-medium text-white/10">del mes</span></h2>
+                    <div className="mb-6">
+                        <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-zinc-400 mb-4">
+                            <Target className="w-5 h-5" />
+                        </div>
+                        <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Punto de Equilibrio</p>
+                        <h2 className="text-3xl font-bold tracking-tight text-white">Día 12 <span className="text-lg text-zinc-500 font-medium">/ 30</span></h2>
+                    </div>
                 </div>
 
-                <div className="luxury-card border-none bg-primary text-black">
-                    <div className="flex justify-between items-start mb-6">
-                        <div className="w-12 h-12 rounded-xl bg-black/10 flex items-center justify-center">
-                            <Cpu className="w-6 h-6" />
+                <div className="glass-panel p-8 border-emerald-500/20 bg-emerald-900/10 relative overflow-hidden">
+                    <div className="mb-6">
+                        <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
+                            <Cpu className="w-5 h-5" />
                         </div>
+                        <p className="text-xs font-bold uppercase tracking-widest text-emerald-400/60 mb-1">Fee Plataforma</p>
+                        <h2 className="text-3xl font-bold tracking-tight text-emerald-400">$12,400</h2>
                     </div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-black/40 mb-1">Fee de Plataforma ($100)</p>
-                    <h2 className="text-4xl font-black tracking-tighter">$12,400 <span className="text-sm font-medium opacity-40">acumulado</span></h2>
+                    <p className="text-[10px] uppercase tracking-widest text-emerald-500/50">Acumulado Mes</p>
                 </div>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-10">
+            <div className="grid lg:grid-cols-12 gap-8">
                 {/* Big Chart Area */}
-                <div className="lg:col-span-8 luxury-card min-h-[500px]">
-                    <div className="flex justify-between items-center mb-10">
-                        <h3 className="text-xl font-bold tracking-tight">Ventas vs Margen Real</h3>
-                        <div className="flex gap-4">
-                            <div className="flex items-center gap-2">
-                                <div className="w-3 h-3 rounded-full bg-primary" />
-                                <span className="text-[8px] font-black uppercase tracking-widest text-white/40">Ingresos</span>
+                <div className="lg:col-span-8 glass-panel p-8 min-h-[400px] flex flex-col">
+                    <div className="flex justify-between items-center mb-8">
+                        <h3 className="text-lg font-bold">Ventas vs Margen Real</h3>
+                        <div className="flex gap-6">
+                            <div className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                                <span className="w-2 h-2 rounded-full bg-emerald-500" /> Ingresos
                             </div>
-                            <div className="flex items-center gap-2">
-                                <div className="w-3 h-3 rounded-full bg-white/20" />
-                                <span className="text-[8px] font-black uppercase tracking-widest text-white/40">Costos</span>
+                            <div className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                                <span className="w-2 h-2 rounded-full bg-zinc-700" /> Costos
                             </div>
                         </div>
                     </div>
-                    <div className="h-[400px] w-full">
+
+                    <div className="flex-1 w-full min-h-[300px]">
                         <ResponsiveContainer width="100%" height="100%">
                             <AreaChart data={data}>
                                 <defs>
@@ -109,7 +123,7 @@ export default function FinanzasBrain() {
                                 <XAxis dataKey="name" hide />
                                 <YAxis hide />
                                 <Tooltip
-                                    contentStyle={{ backgroundColor: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' }}
+                                    contentStyle={{ backgroundColor: '#09090b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' }}
                                     itemStyle={{ color: '#10b981', fontWeight: 'bold' }}
                                 />
                                 <Area type="monotone" dataKey="ventas" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#primaryGlow)" />
@@ -119,30 +133,34 @@ export default function FinanzasBrain() {
                 </div>
 
                 {/* AI Mentor Sidebar */}
-                <div className="lg:col-span-4 space-y-8">
-                    <div className="luxury-card border-primary/20 bg-primary/5">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <div className="lg:col-span-4 space-y-6">
+                    <div className="glass-panel p-8 border-emerald-500/20 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[50px] rounded-full pointer-events-none" />
+
+                        <div className="flex items-center gap-3 mb-6 relative z-10">
+                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
                                 <BrainCircuit className="w-5 h-5" />
                             </div>
-                            <h4 className="font-bold text-lg tracking-tight">Mentoría IA Elite</h4>
+                            <h4 className="font-bold text-lg">Alerta IA</h4>
                         </div>
-                        <p className="text-sm leading-relaxed text-white/70 font-medium">
-                            "Tu costo de carne subió un 12% esta semana. Si no ajustas el precio del <span className="text-primary italic">Tomahawk Premium</span>, tu utilidad neta caerá por debajo del 18%."
+
+                        <p className="text-sm leading-relaxed text-zinc-300 font-medium mb-6 relative z-10">
+                            "Tu costo de carne subió un 12%. Si no ajustas el precio del <span className="text-emerald-400">Tomahawk Premium</span>, tu utilidad neta caerá por debajo del 18%."
                         </p>
-                        <div className="mt-8 pt-6 border-t border-white/5">
-                            <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-4">Acción Recomendada</p>
-                            <button className="w-full h-12 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-white/90 transition-all flex items-center justify-center gap-2 group">
-                                Optimizar Precios <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-all" />
-                            </button>
-                        </div>
+
+                        <button className="w-full py-3 rounded-lg bg-emerald-500 text-black text-xs font-bold uppercase tracking-widest hover:bg-emerald-400 transition-all flex items-center justify-center gap-2 group relative z-10">
+                            Optimizar Precios <ChevronRight className="w-4 h-4" />
+                        </button>
                     </div>
 
-                    <div className="luxury-card">
-                        <h4 className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-6">Píldora Educativa</h4>
-                        <p className="font-bold text-lg italic mb-2">"El Margen no es Venta"</p>
-                        <p className="text-xs leading-relaxed text-white/40">
-                            Muchos cocineros se enfocan en vender más, pero un empresario se enfoca en que cada venta deje más utilidad. No seas solo un cocinero, sé un estratega.
+                    <div className="glass-panel p-8">
+                        <div className="flex items-center justify-between mb-4">
+                            <h4 className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Insight Educativo</h4>
+                            <ArrowUpRight className="w-4 h-4 text-zinc-600" />
+                        </div>
+                        <p className="font-bold text-lg italic mb-2 text-white">"El Margen no es Venta"</p>
+                        <p className="text-xs leading-relaxed text-zinc-400">
+                            Muchos cocineros se enfocan en vender más, pero un empresario se enfoca en que cada venta deje más utilidad.
                         </p>
                     </div>
                 </div>

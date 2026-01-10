@@ -1,94 +1,104 @@
 "use client"
 
 import {
-    Cpu,
     BrainCircuit,
-    Fingerprint,
-    Zap,
-    AlertTriangle,
+    Database,
     ChevronRight,
-    Database
+    Search
 } from "lucide-react"
 
 export default function MentorIAPage() {
     return (
-        <div className="max-w-[1200px] mx-auto space-y-16 py-10 selection:bg-primary/20">
+        <div className="min-h-screen bg-gradient-cryptify p-6 lg:p-10 font-sans text-white">
             {/* AI Hub Header */}
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10">
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 mb-16">
                 <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 glass-neon rounded-full flex items-center justify-center text-primary glow-emerald">
-                            <BrainCircuit className="w-6 h-6" />
+                        <div className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                            Node: Neural-X
                         </div>
-                        <span className="cyber-terminal">Node: Neural-X</span>
                     </div>
-                    <h1 className="text-6xl font-black tracking-tighter uppercase italic">Mentor <span className="text-primary italic">IA</span></h1>
-                    <p className="text-xl text-secondary font-medium max-w-xl">Inteligencia sintética audicionando tus flujos de caja en tiempo real. Decisiones basadas en <span className="text-white italic">datos, no en intuición.</span></p>
+                    <h1 className="text-5xl font-bold tracking-tight">Mentor <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">IA</span></h1>
+                    <p className="text-lg text-zinc-400 max-w-xl leading-relaxed">
+                        Inteligencia sintética auditando tus flujos de caja en tiempo real.
+                        Decisiones basadas en <span className="text-white font-medium">datos, no en intuición.</span>
+                    </p>
                 </div>
-                <div className="glass-luxury p-8 border-white/5 border-l-4 border-l-primary flex gap-10">
+
+                <div className="glass-panel p-6 flex gap-8 border-l-4 border-l-emerald-500">
                     <div>
-                        <p className="text-[8px] font-bold text-secondary uppercase tracking-[0.4em] mb-2">Confidence</p>
-                        <p className="text-3xl font-black">98.4%</p>
+                        <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">Confidence</p>
+                        <p className="text-3xl font-bold text-white">98.4%</p>
                     </div>
-                    <div className="w-[1px] h-full bg-white/5" />
+                    <div className="w-[1px] h-full bg-white/10" />
                     <div>
-                        <p className="text-[8px] font-bold text-secondary uppercase tracking-[0.4em] mb-2">Training Data</p>
-                        <p className="text-3xl font-black">1.2B</p>
+                        <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">Training Models</p>
+                        <p className="text-3xl font-bold text-white">1.2B</p>
                     </div>
                 </div>
             </div>
 
-            {/* Cyber AI Insights Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* AI Insights Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                 {[
                     {
                         title: "Optimización de Inventario",
                         desc: "Se detectó redundancia en el stock de 'Wagyu A5'. El flujo sugiere reducir compra un 15%.",
                         impact: "High",
-                        type: "Profit"
+                        type: "Profit",
+                        bg: "border-l-emerald-500"
                     },
                     {
                         title: "Fuga de Capital",
                         desc: "Insumo 'Aceite de Trufa' inconsistente con recetas. 5% de merma no justificada.",
                         impact: "Critical",
-                        type: "Cost"
+                        type: "Cost",
+                        bg: "border-l-red-500"
                     },
                     {
                         title: "Oportunidad de Upselling",
                         desc: "El vino 'Barolo 2018' posee 12% más margen que la recomendación actual del mes.",
-                        impact: "Med",
-                        type: "Revenue"
+                        impact: "Medium",
+                        type: "Revenue",
+                        bg: "border-l-blue-500"
                     }
                 ].map((item, i) => (
-                    <div key={i} className="premium-card relative group border-white/5 hover:border-primary/20 transition-all duration-500">
-                        <div className="absolute top-4 right-4 text-[8px] font-black uppercase tracking-widest text-primary/40 flex items-center gap-1">
-                            <Database className="w-2 h-2" /> Sector: Gastronomic-0{i + 1}
+                    <div key={i} className={`glass-panel p-8 relative group hover:bg-white/[0.03] transition-colors border-l-4 ${item.bg}`}>
+                        <div className="flex justify-between items-start mb-6">
+                            <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-2">
+                                <Database className="w-3 h-3" /> Gastronomic-0{i + 1}
+                            </div>
+                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${item.impact === 'Critical' ? 'bg-red-500/10 text-red-500' : 'bg-white/5 text-zinc-400'}`}>
+                                {item.impact}
+                            </span>
                         </div>
-                        <p className={`text-[8px] font-black uppercase tracking-widest mb-4 inline-block px-2 py-0.5 border rounded-sm ${item.impact === 'Critical' ? 'border-red-500/50 text-red-500 bg-red-500/5' : 'border-primary/50 text-primary bg-primary/5'}`}>
-                            {item.impact} Impact
-                        </p>
-                        <h3 className="text-xl font-bold mb-4 tracking-tight uppercase italic">{item.title}</h3>
-                        <p className="text-sm text-secondary leading-relaxed font-medium mb-8">
+
+                        <h3 className="text-xl font-bold mb-4">{item.title}</h3>
+                        <p className="text-sm text-zinc-400 leading-relaxed mb-8 min-h-[60px]">
                             "{item.desc}"
                         </p>
-                        <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary group-hover:gap-4 transition-all">
+
+                        <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-emerald-400 group-hover:gap-3 transition-all">
                             Ejecutar Plan Maestro <ChevronRight className="w-3 h-3" />
                         </button>
                     </div>
                 ))}
             </div>
 
-            {/* Futuristic Stats Footer */}
-            <div className="premium-card border-none bg-primary/5 p-12 overflow-hidden relative">
-                <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-primary/10 rounded-full blur-[100px]" />
-                <div className="relative z-10 flex flex-col lg:flex-row justify-between items-center gap-10">
-                    <div className="space-y-2">
-                        <h4 className="text-3xl font-black tracking-tighter uppercase italic">Predicción de Cierre de Mes</h4>
-                        <p className="text-sm text-secondary font-medium">Basado en el histórico de los últimos 24 meses y tendencias locales.</p>
-                    </div>
-                    <div className="text-center lg:text-right">
-                        <p className="text-5xl font-black text-primary glow-emerald mb-2 italic">$42,900,000 COP</p>
-                        <span className="cyber-terminal">Accuracy: ±2%</span>
+            {/* Footer Stats */}
+            <div className="glass-panel p-12 relative overflow-hidden flex flex-col items-center justify-center text-center">
+                <div className="absolute top-0 left-0 w-full h-full bg-emerald-500/5" />
+                <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-emerald-500/20 blur-[100px] rounded-full" />
+
+                <h4 className="relative z-10 text-2xl font-bold tracking-tight mb-2">Predicción de Cierre de Mes</h4>
+                <p className="relative z-10 text-zinc-400 text-sm mb-6">Calculado en base al histórico de los últimos 24 meses.</p>
+
+                <div className="relative z-10 inline-block">
+                    <p className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-200 tracking-tight">$42,900,000</p>
+                    <div className="mt-2 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 flex items-center justify-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        Accuracy: ±2%
                     </div>
                 </div>
             </div>

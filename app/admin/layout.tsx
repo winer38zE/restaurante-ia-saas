@@ -1,15 +1,18 @@
 "use client"
 
 import {
-    Activity,
-    Cpu,
-    Terminal,
     LayoutGrid,
+    Cpu,
+    Activity,
     LogOut,
-    ChevronLeft
+    Menu,
+    X,
+    Settings,
+    CreditCard
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useState } from "react"
 
 export default function AdminLayout({
     children,
@@ -17,61 +20,102 @@ export default function AdminLayout({
     children: React.ReactNode
 }) {
     const pathname = usePathname()
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+    const navItems = [
+        { label: "Dashboard", href: "/admin/dashboard", icon: <LayoutGrid className="w-5 h-5" /> },
+        { label: "Mentor IA", href: "/admin/ia-mentor", icon: <Cpu className="w-5 h-5" /> },
+        { label: "Contabilidad", href: "/admin/contabilidad", icon: <Activity className="w-5 h-5" /> },
+        { label: "Plan & Pagos", href: "/admin/pricing", icon: <CreditCard className="w-5 h-5" /> },
+    ]
 
     return (
-        <div className="flex min-h-screen bg-black text-primary overflow-hidden">
-            {/* 2026 Admin Navigation Sidebar (Minimalist) */}
-            <aside className="w-20 lg:w-64 border-r border-primary/10 flex flex-col items-center lg:items-stretch h-screen fixed left-0 top-0 bg-black z-50">
-                <div className="h-32 flex items-center justify-center border-b border-primary/10 mb-10">
-                    <Link href="/" className="flex items-center gap-3">
-                        <div className="w-10 h-10 border border-primary flex items-center justify-center glow-emerald">
-                            <Terminal className="w-5 h-5" />
+        <div className="flex min-h-screen bg-[#050505] text-white overflow-hidden relative font-sans">
+            {/* Background Glows */}
+            <div className="fixed top-0 left-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
+
+            {/* Mobile Menu Button */}
+            <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden fixed top-4 right-4 z-50 p-2 bg-zinc-900/80 backdrop-blur-md rounded-lg border border-white/10"
+            >
+                {isMobileMenuOpen ? <X /> : <Menu />}
+            </button>
+
+            {/* Sidebar Navigation */}
+            <aside className={`
+                fixed lg:relative z-40 h-screen w-72 
+                glass-panel m-0 rounded-none border-y-0 border-l-0 border-r border-white/5
+                flex flex-col transition-transform duration-300 ease-in-out
+                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+            `}>
+                <div className="p-8 pb-4">
+                    <Link href="/" className="flex items-center gap-3 mb-8">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                            <div className="w-4 h-4 bg-emerald-500 rounded-sm rotate-45" />
                         </div>
-                        <span className="hidden lg:block text-xl font-black italic tracking-widest">G-IA</span>
+                        <span className="text-xl font-bold tracking-tight">G-IA<span className="text-emerald-500">.Admin</span></span>
                     </Link>
+
+                    <div className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-4 px-2">
+                        Plataforma
+                    </div>
                 </div>
 
-                <nav className="flex-1 px-4 space-y-4">
-                    {[
-                        { label: "Dashboard", href: "/admin/dashboard", icon: <LayoutGrid className="w-5 h-5" /> },
-                        { label: "Mentor IA", href: "/admin/ia-mentor", icon: <Cpu className="w-5 h-5" /> },
-                        { label: "Contabilidad", href: "/admin/contabilidad", icon: <Activity className="w-5 h-5" /> },
-                    ].map((item) => (
-                        <Link
-                            key={item.href}
-                            href={item.href}
-                            className={`flex items-center gap-4 p-4 transition-all ${pathname === item.href ? 'bg-primary text-black font-black' : 'hover:bg-primary/5 opacity-40 hover:opacity-100'}`}
-                        >
-                            {item.icon}
-                            <span className="hidden lg:block terminal-text">{item.label}</span>
-                        </Link>
-                    ))}
+                <nav className="flex-1 px-4 space-y-2">
+                    {navItems.map((item) => {
+                        const isActive = pathname === item.href
+                        return (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                className={`
+                                    flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group
+                                    ${isActive
+                                        ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                                        : 'text-zinc-400 hover:bg-white/5 hover:text-white border border-transparent'
+                                    }
+                                `}
+                            >
+                                <span className={isActive ? 'text-emerald-400' : 'text-zinc-500 group-hover:text-white'}>
+                                    {item.icon}
+                                </span>
+                                <span className="font-medium">{item.label}</span>
+                                {isActive && (
+                                    <div className="ml-auto w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.5)]" />
+                                )}
+                            </Link>
+                        )
+                    })}
                 </nav>
 
-                <div className="p-4 border-t border-primary/10">
-                    <button className="flex items-center gap-4 p-4 w-full hover:bg-red-500/10 hover:text-red-500 transition-all opacity-40 hover:opacity-100">
-                        <LogOut className="w-5 h-5" />
-                        <span className="hidden lg:block terminal-text">Kill_Session</span>
+                <div className="p-4 border-t border-white/5">
+                    <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 rounded-xl p-4 border border-white/5 mb-4 group cursor-pointer hover:border-emerald-500/20 transition-colors">
+                        <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-xs font-bold text-indigo-400">
+                                JD
+                            </div>
+                            <div className="overflow-hidden">
+                                <p className="text-sm font-bold truncate group-hover:text-emerald-400 transition-colors">John Doe</p>
+                                <p className="text-xs text-zinc-500 truncate">Admin Access</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button className="flex items-center gap-3 w-full px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-xl transition-all text-sm font-medium">
+                        <LogOut className="w-4 h-4" />
+                        <span>Cerrar Sesión</span>
                     </button>
+
+                    <div className="mt-4 text-center">
+                        <p className="text-[10px] text-zinc-600 uppercase tracking-widest">v2.6.0 Stable</p>
+                    </div>
                 </div>
             </aside>
 
             {/* Main Content Area */}
-            <main className="flex-1 ml-20 lg:ml-64 relative">
-                <div className="h-20 border-b border-primary/10 flex items-center justify-between px-10 glass-emerald sticky top-0 z-40">
-                    <div className="flex items-center gap-4 terminal-text opacity-40">
-                        <ChevronLeft className="w-4 h-4" /> LOCAL_HOST:8080
-                    </div>
-                    <div className="flex items-center gap-6">
-                        <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-primary rounded-full animate-ping" />
-                            <span className="terminal-text">System_Active</span>
-                        </div>
-                    </div>
-                </div>
-                <div className="p-0">
-                    {children}
-                </div>
+            <main className="flex-1 relative overflow-y-auto h-screen no-scrollbar">
+                {children}
             </main>
         </div>
     )
