@@ -2,52 +2,56 @@
 
 :root {
   --background: #000000;
-  /* Absolute Black */
-  --foreground: #ffffff;
+  --foreground: #10b981;
+  /* Emerald 500 */
   --primary: #10b981;
-  /* Neon Emerald */
-  --secondary: #1e293b;
-  --border-neon: rgba(16, 185, 129, 0.3);
-  --glass: rgba(0, 0, 0, 0.8);
+  --emerald-low: rgba(16, 185, 129, 0.1);
+  --emerald-mid: rgba(16, 185, 129, 0.3);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
 }
 
 @layer base {
   body {
     background: var(--background);
     color: var(--foreground);
-    @apply antialiased selection:bg-primary/20;
-    font-family: 'Inter', sans-serif;
+    @apply antialiased selection:bg-primary/20 cursor-crosshair;
+    font-family: 'JetBrains Mono', 'Inter', monospace;
+    letter-spacing: -0.02em;
   }
 
   * {
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--emerald-low);
   }
 }
 
-.luxury-card {
-  @apply bg-black/40 backdrop-blur-2xl border border-white/10 rounded-2xl p-8 transition-all hover:border-primary/50;
+.command-card {
+  @apply bg-black border border-primary/20 rounded-none p-6 backdrop-blur-3xl transition-all hover:border-primary/60 hover:shadow-[0_0_20px_rgba(16, 185, 129, 0.1)];
 }
 
-.neon-border {
-  border: 1px solid var(--border-neon);
-  box-shadow: 0 0 15px rgba(16, 185, 129, 0.05);
+.glass-emerald {
+  background: rgba(16, 185, 129, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(16, 185, 129, 0.1);
 }
 
-.glow-text {
-  text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+.terminal-text {
+  @apply font-mono uppercase tracking-[0.2em] text-[10px];
+}
+
+.glow-emerald {
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+}
+
+.system-btn {
+  @apply border border-primary text-primary px-10 py-4 font-black uppercase tracking-[0.3em] text-[12px] hover:bg-primary hover:text-black transition-all active:scale-95;
 }
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
-}
-
-.glass-header {
-  @apply bg-black/60 backdrop-blur-3xl border-b border-white/5;
 }
