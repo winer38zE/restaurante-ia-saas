@@ -1,35 +1,54 @@
 "use client"
 
 import {
-  BarChart3,
-  ArrowUpRight,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  AreaChart,
+  Area
+} from "recharts"
+import {
   DollarSign,
-  Users,
-  ShoppingBag,
-  Zap,
   TrendingUp,
+  ArrowUpRight,
+  ShieldCheck,
+  Zap,
+  ChevronRight,
   BrainCircuit,
-  Settings
+  ShoppingBag,
+  Users
 } from "lucide-react"
-import Link from "next/link"
 
-export default function DashboardPage() {
+const data = [
+  { name: "Lun", ventas: 4200, margen: 2800 },
+  { name: "Mar", ventas: 3800, margen: 2100 },
+  { name: "Mie", ventas: 5400, margen: 3900 },
+  { name: "Jue", ventas: 4900, margen: 3200 },
+  { name: "Vie", ventas: 7800, margen: 5100 },
+  { name: "Sab", ventas: 9200, margen: 6400 },
+  { name: "Dom", ventas: 8100, margen: 5800 },
+]
+
+export default function RootDashboard() {
   return (
-    <div className="space-y-16">
+    <div className="space-y-16 animate-in fade-in duration-700">
       {/* Welcome Section */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10">
-        <div className="space-y-2">
-          <div className="flex items-center gap-3 text-primary mb-4 p-1 px-3 bg-primary/5 border border-primary/20 rounded-full w-fit">
-            <Zap className="w-4 h-4" />
-            <span className="text-[10px] font-black uppercase tracking-[0.3em]">Comando Central Online</span>
+        <div className="space-y-4">
+          <div className="flex items-center gap-3 text-primary mb-2">
+            <Zap className="w-5 h-5 animate-pulse" />
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/60">System Online // Luxury Core</span>
           </div>
-          <h1 className="text-7xl font-black tracking-tighter uppercase italic leading-none">Resumen de <span className="text-secondary/20">Ventas</span></h1>
-          <p className="text-xl text-white/40 font-medium">Gestionando su imperio gastronómico en tiempo real.</p>
+          <h1 className="text-7xl font-black tracking-tighter uppercase italic leading-none">Empire <span className="text-white/10">Dashboard</span></h1>
+          <p className="text-xl text-white/40 font-medium max-w-2xl italic">"Su flujo de capital traducido en éxito estratégico."</p>
         </div>
-        <div className="grid grid-cols-2 gap-4 w-full lg:w-auto">
-          <div className="glass-card flex flex-col justify-center items-center py-6 px-10 border-primary/20 bg-primary/5 min-w-[240px]">
-            <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-2">Utilidad Hoy</p>
-            <h2 className="text-4xl font-black italic">$2.4M</h2>
+        <div className="flex gap-4 w-full lg:w-auto">
+          <div className="glass-card flex flex-col justify-center items-center py-6 px-12 border-primary/20 bg-primary/5 min-w-[280px]">
+            <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-2">Punto de Equilibrio</p>
+            <h2 className="text-4xl font-black italic">Alcanzado</h2>
           </div>
         </div>
       </div>
@@ -38,9 +57,9 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
           { label: "Rev Totales", val: "$124.5M", icon: <DollarSign className="w-4 h-4" />, change: "+12.4%" },
-          { label: "Cubiertos", val: "1,420", icon: <Users className="w-4 h-4" />, change: "+8.1%" },
+          { label: "Clientes", val: "1,420", icon: <Users className="w-4 h-4" />, change: "+8.1%" },
           { label: "Ticket Prom", val: "$84.2k", icon: <ShoppingBag className="w-4 h-4" />, change: "-2.3%" },
-          { label: "Eficiencia", val: "94.2%", icon: <TrendingUp className="w-4 h-4" />, change: "+0.5%" },
+          { label: "Net Profit", val: "38.5%", icon: <TrendingUp className="w-4 h-4" />, change: "+4.2%" },
         ].map((stat, i) => (
           <div key={i} className="glass-card hover:border-primary/40 group">
             <div className="flex justify-between items-start mb-6">
@@ -50,39 +69,89 @@ export default function DashboardPage() {
               <span className={`text-[10px] font-black ${stat.change.startsWith('+') ? 'text-primary' : 'text-red-500'}`}>{stat.change}</span>
             </div>
             <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">{stat.label}</p>
-            <h3 className="text-2xl font-black italic">{stat.val}</h3>
+            <h3 className="text-3xl font-black italic tracking-tighter">{stat.val}</h3>
           </div>
         ))}
       </div>
 
-      {/* Quick Access Tiles */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <Link href="/finanzas" className="glass-card group hover:scale-[1.01] transition-all h-[300px] flex flex-col justify-between overflow-hidden relative">
-          <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity">
-            <TrendingUp className="w-40 h-40" />
+      {/* Big Chart Area */}
+      <div className="grid lg:grid-cols-12 gap-10">
+        <div className="lg:col-span-8 glass-card">
+          <div className="flex justify-between items-center mb-10 border-b border-white/5 pb-6">
+            <h3 className="text-sm font-black uppercase tracking-[0.3em] flex items-center gap-3">
+              <Activity className="w-4 h-4 text-primary" /> Auditoría de Flujo Diaria
+            </h3>
+            <div className="flex gap-6 text-[10px] font-black uppercase tracking-widest opacity-40">
+              <span className="flex items-center gap-2 underline decoration-primary/40">Ventas</span>
+              <span className="flex items-center gap-2">Margen</span>
+            </div>
           </div>
-          <div className="space-y-2 relative z-10">
-            <h3 className="text-4xl font-black italic uppercase italic tracking-tighter">Analizar Rentabilidad</h3>
-            <p className="text-white/40 text-sm font-medium uppercase tracking-widest">Ingrese al cerebro financiero</p>
+          <div className="h-[450px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={data}>
+                <defs>
+                  <linearGradient id="primaryGlow" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="name" hide />
+                <YAxis hide />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#000', border: '1px solid rgba(16, 185, 129, 0.2)', borderRadius: '12px' }}
+                  itemStyle={{ color: '#10b981', fontWeight: 'bold', fontSize: '12px', textTransform: 'uppercase' }}
+                />
+                <Area type="monotone" dataKey="ventas" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#primaryGlow)" />
+                <Area type="monotone" dataKey="margen" stroke="#ffffff" strokeWidth={1} fillOpacity={0} strokeDasharray="5 5" />
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
-          <div className="flex items-center gap-2 text-primary text-[10px] font-black uppercase tracking-widest relative z-10">
-            Explorar Ahora <ArrowUpRight className="w-4 h-4" />
-          </div>
-        </Link>
+        </div>
 
-        <Link href="/mentor-ia" className="glass-card group hover:scale-[1.01] transition-all h-[300px] flex flex-col justify-between overflow-hidden relative border-primary/20 bg-primary/5">
-          <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity text-primary">
-            <BrainCircuit className="w-40 h-40" />
+        <div className="lg:col-span-4 space-y-8">
+          <div className="glass-card bg-primary/10 border-primary/20">
+            <div className="flex items-center gap-3 mb-6">
+              <BrainCircuit className="w-10 h-10 text-primary" />
+              <h4 className="font-black italic uppercase tracking-tighter text-xl underline decoration-primary/20">Mentor IA Elite</h4>
+            </div>
+            <p className="text-sm font-medium leading-relaxed italic text-white/80">
+              "Su rentabilidad hoy fue del 38.5%. Mantenga el costo operativo bajo $2.5M para asegurar la expansión del próximo ciclo."
+            </p>
+            <button className="w-full mt-8 h-14 bg-white text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-xl hover:brightness-90 transition-all flex items-center justify-center gap-2 group">
+              Explorar Cerebro IA <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+            </button>
           </div>
-          <div className="space-y-2 relative z-10">
-            <h3 className="text-4xl font-black italic uppercase italic tracking-tighter">ConsultarIA</h3>
-            <p className="text-primary/40 text-sm font-medium uppercase tracking-widest">Mentoría estratégica personalizada</p>
+
+          <div className="glass-card border-none ring-1 ring-white/10 p-10">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-2 h-2 bg-primary rounded-full animate-ping" />
+              <p className="text-[10px] font-black uppercase tracking-widest text-white/40">Status: Command Node Stable</p>
+            </div>
+            <p className="text-xs font-medium leading-relaxed opacity-60 italic">
+              Configuración de Plan Híbrido Activo. Comisión de $100 COP por pedido sincronizada con Supabase.
+            </p>
           </div>
-          <div className="flex items-center gap-2 text-primary text-[10px] font-black uppercase tracking-widest relative z-10">
-            Obtener Insight <ArrowUpRight className="w-4 h-4" />
-          </div>
-        </Link>
+        </div>
       </div>
     </div>
+  );
+}
+
+function Activity(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+    </svg>
   )
 }
