@@ -126,7 +126,7 @@ export default function AdminDashboard() {
                         ].map((log, i) => (
                             <div key={i} className="flex gap-4 group">
                                 <span className="text-[8px] opacity-20 group-hover:opacity-100 transition-opacity">{log.t}</span>
-                                <p className="text-[10px] leading-relaxed group-hover:text-white transition-colors">{'>>'} {log.m}</p>
+                                <p className="text-[10px] leading-relaxed group-hover:text-white transition-colors">&gt;&gt; {log.m}</p>
                             </div>
                         ))}
                     </div>
