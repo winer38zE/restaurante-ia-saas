@@ -1,16 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050505;
-  /* Deep Space Black */
+  --background: #000000;
+  /* Absolute Black */
   --foreground: #ffffff;
   --primary: #10b981;
   /* Neon Emerald */
-  --secondary: #94a3b8;
-  /* Titanium Silver */
-  --glass: rgba(10, 10, 10, 0.7);
-  --border-neon: rgba(16, 185, 129, 0.2);
-  --border-muted: rgba(255, 255, 255, 0.05);
+  --secondary: #1e293b;
+  --border-neon: rgba(16, 185, 129, 0.3);
+  --glass: rgba(0, 0, 0, 0.8);
 }
 
 @theme inline {
@@ -21,48 +19,35 @@
 }
 
 @layer base {
-  * {
-    border-color: var(--border-muted);
-  }
-
   body {
     background: var(--background);
     color: var(--foreground);
     @apply antialiased selection:bg-primary/20;
     font-family: 'Inter', sans-serif;
-    letter-spacing: 0.05em;
+  }
+
+  * {
+    border-color: rgba(255, 255, 255, 0.1);
   }
 }
 
-.glass-luxury {
-  background: var(--glass);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border-muted);
+.luxury-card {
+  @apply bg-black/40 backdrop-blur-2xl border border-white/10 rounded-2xl p-8 transition-all hover:border-primary/50;
 }
 
-.glass-neon {
-  background: rgba(16, 185, 129, 0.03);
-  backdrop-filter: blur(24px);
+.neon-border {
   border: 1px solid var(--border-neon);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.05);
 }
 
-.glow-emerald {
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
-}
-
-.cyber-terminal {
-  @apply bg-background border border-border-muted font-mono text-[10px] tracking-widest uppercase py-1 px-2 rounded-sm;
-}
-
-.premium-card {
-  @apply glass-luxury rounded-2xl p-8 transition-all hover:bg-white/5 active:scale-[0.99];
-}
-
-.cyber-button {
-  @apply bg-primary text-black font-black uppercase tracking-[0.2em] text-[10px] h-12 px-8 rounded-sm hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20;
+.glow-text {
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.glass-header {
+  @apply bg-black/60 backdrop-blur-3xl border-b border-white/5;
 }

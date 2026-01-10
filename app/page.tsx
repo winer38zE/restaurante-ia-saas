@@ -1,147 +1,108 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { motion } from "framer-motion"
-import { Zap, Target, Activity, Cpu, ChevronRight } from "lucide-react"
+import { Zap, Target, Activity, Cpu, ChevronRight, Utensils, DollarSign, ChefHat, ShoppingBag, Terminal } from "lucide-react"
+import { cn } from "@/lib/utils"
 
-export default function LandingPage() {
+export default function EmpireDashboard() {
+  const [selectedPlan, setSelectedPlan] = useState("hibrido")
+  const totalVentas = 124 // Ejemplo
+  const feePlataforma = totalVentas * 100
+
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/20">
-      {/* Navigator Hub */}
-      <nav className="fixed top-0 w-full z-100 glass-luxury border-b border-white/5">
-        <div className="container mx-auto px-10 h-24 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-sm flex items-center justify-center text-primary glow-emerald">
-              <Zap className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="text-2xl font-black tracking-[0.2em] uppercase leading-none">GastroIA</span>
-              <p className="text-[8px] font-bold text-primary tracking-[0.3em] uppercase mt-1">SaaS Force One</p>
-            </div>
+    <div className="max-w-[1600px] mx-auto space-y-16 py-10 selection:bg-primary/20">
+      {/* Top Banner Control */}
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10">
+        <div>
+          <div className="flex items-center gap-3 text-primary mb-3">
+            <Zap className="w-5 h-5 animate-pulse" />
+            <span className="text-[10px] font-black uppercase tracking-[0.4em]">Operational Commander</span>
           </div>
-          <div className="hidden lg:flex items-center gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-secondary">
-            <a href="#architecture" className="hover:text-primary transition-all">Architecture</a>
-            <a href="#intelligence" className="hover:text-primary transition-all">Intelligence</a>
-            <a href="#admin" className="hover:text-primary transition-all">Command</a>
-          </div>
-          <button className="cyber-button">
-            Initialize
-          </button>
+          <h1 className="text-7xl font-black tracking-tighter uppercase italic leading-none">Comando <span className="text-secondary/20">Central</span></h1>
+          <p className="text-lg text-white/40 font-medium mt-4">Bienvenido, <span className="text-white italic">Elite Partner.</span> Gestionando 1 local activo.</p>
         </div>
-      </nav>
-
-      <main>
-        {/* Cyber Hero Section */}
-        <section className="relative pt-60 pb-40 container mx-auto px-10">
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <div className="mb-10 flex items-center gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full animate-ping" />
-                <span className="cyber-terminal">Status: Ready for Deployment</span>
-              </div>
-              <h1 className="text-7xl md:text-9xl font-black tracking-tighter leading-[0.8] mb-12 uppercase italic">
-                Construye un <span className="text-primary">Imperio</span> <span className="text-secondary/20">Sintético.</span>
-              </h1>
-              <p className="text-lg md:text-xl text-secondary mb-16 max-w-xl leading-relaxed font-medium">
-                GastroIA es la columna vertebral tecnológica para restaurantes de ultra-lujo. Gestión financiera, mentoría IA y escalabilidad global en una sola terminal.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-8">
-                <button className="cyber-button h-16 px-12 text-xs">
-                  Aceder al Comando Central
-                </button>
-                <button className="h-16 px-12 glass-luxury border-white/10 text-secondary rounded-sm font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white/5 transition-all">
-                  Ver Blueprint
-                </button>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="aspect-[4/3] rounded-sm overflow-hidden border border-white/5 relative group glass-luxury">
-                <Image
-                  src="/hero.png"
-                  alt="Cyber Gastronomy"
-                  fill
-                  className="object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-[3s]"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-
-                {/* Floating Terminal Data */}
-                <div className="absolute top-10 left-10 p-6 glass-neon rounded-sm border-primary/20 animate-vertical-float">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Activity className="w-3 h-3 text-primary" />
-                    <span className="text-[8px] font-black uppercase tracking-widest text-primary">Marginal Flow</span>
-                  </div>
-                  <p className="text-4xl font-black text-white italic">+32.5%</p>
-                </div>
-
-                <div className="absolute bottom-10 right-10 p-6 glass-luxury border-white/10 rounded-sm">
-                  <p className="text-[8px] font-black uppercase tracking-widest text-secondary/40 mb-2">Neural Node: 0x42F</p>
-                  <p className="text-lg font-black uppercase tracking-widest">Optimized</p>
-                </div>
-              </div>
-              {/* Cyber Orbs */}
-              <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-[150px] -z-1" />
-            </motion.div>
+        <div className="grid grid-cols-2 gap-4 w-full lg:w-auto">
+          <div className="luxury-card p-6 min-w-[200px] border-primary/20 bg-primary/5">
+            <p className="text-[8px] font-black uppercase tracking-widest text-primary mb-2">Fee Acumulado</p>
+            <h2 className="text-3xl font-black italic">$ {feePlataforma.toLocaleString()}</h2>
           </div>
-        </section>
+          <div className="luxury-card p-6 min-w-[200px]">
+            <p className="text-[8px] font-black uppercase tracking-widest text-white/30 mb-2">Ventas Netas</p>
+            <h2 className="text-3xl font-black italic">$4.8M</h2>
+          </div>
+        </div>
+      </div>
 
-        {/* Technical Architecture */}
-        <section id="architecture" className="py-40 border-y border-white/5">
-          <div className="container mx-auto px-10">
-            <div className="grid lg:grid-cols-3 gap-16">
+      {/* Main SaaS Strategy Grid */}
+      <div className="grid lg:grid-cols-3 gap-10">
+        {/* Quick Access */}
+        <div className="lg:col-span-2 grid md:grid-cols-2 gap-8">
+          {[
+            { title: "Menú Digital", href: "/menu", desc: "Ver experiencia del cliente", icon: <Utensils className="w-6 h-6" /> },
+            { title: "Cerebro Financiero", href: "/admin/finanzas", desc: "Auditoría IA y márgenes", icon: <DollarSign className="w-6 h-6" /> },
+            { title: "Monitor de Cocina", href: "/cocina", desc: "Flujo operativo real", icon: <ChefHat className="w-6 h-6" /> },
+            { title: "Gestión de Pedidos", href: "/dashboard/orders", desc: "Historial y reportes", icon: <ShoppingBag className="w-6 h-6" /> },
+          ].map((card, i) => (
+            <Link key={i} href={card.href} className="luxury-card group hover:scale-[1.02] flex flex-col justify-between h-[240px]">
+              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white/20 group-hover:text-primary transition-all">
+                {card.icon}
+              </div>
+              <div>
+                <h3 className="text-2xl font-black italic mb-2">{card.title}</h3>
+                <p className="text-xs text-white/30 font-medium uppercase tracking-widest">{card.desc}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* SaaS Subscription Selection */}
+        <div className="space-y-8">
+          <div className="luxury-card border-white/5 bg-white/2">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30 mb-8">Selección de Estrategia (SaaS)</h4>
+            <div className="space-y-6">
               {[
-                {
-                  icon: <Target className="w-6 h-6" />,
-                  title: "Alta Precisión",
-                  desc: "Márgenes calculados al centavo mediante algoritmos de auditoría sintética."
-                },
-                {
-                  icon: <Cpu className="w-6 h-6" />,
-                  title: "Núcleo Mentor IA",
-                  desc: "Un agente autónomo que aprende de tus platos y optimiza tus precios 24/7."
-                },
-                {
-                  icon: <Zap className="w-6 h-6" />,
-                  title: "Despliegue Global",
-                  desc: "Infraestructura serverless preparada para imperios de 100+ locaciones."
-                }
-              ].map((f, i) => (
-                <div key={i} className="group p-10 glass-luxury border-white/5 hover:border-primary/20 transition-all duration-700">
-                  <div className="w-16 h-16 rounded-sm bg-primary/5 text-primary flex items-center justify-center mb-10 border border-primary/10 group-hover:glow-emerald group-hover:scale-110 transition-all">
-                    {f.icon}
+                { id: "basico", name: "Básico", price: "$59k", desc: "Fijo mensual" },
+                { id: "premium", name: "Premium", price: "$119k", desc: "Full IA Mentorship" },
+                { id: "hibrido", name: "Híbrido", price: "$40k", desc: "$40k + $100/venta" },
+              ].map((plan) => (
+                <button
+                  key={plan.id}
+                  onClick={() => setSelectedPlan(plan.id)}
+                  className={cn(
+                    "w-full p-6 text-left rounded-xl transition-all border",
+                    selectedPlan === plan.id ? "bg-primary border-transparent text-black" : "bg-white/5 border-white/5 text-white/40 hover:bg-white/10"
+                  )}
+                >
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-[10px] font-black uppercase tracking-widest">{plan.name}</span>
+                    <span className="text-lg font-black italic">{plan.price}</span>
                   </div>
-                  <h3 className="text-2xl font-black mb-6 tracking-tighter uppercase italic">{f.title}</h3>
-                  <p className="text-secondary leading-relaxed font-medium text-sm">{f.desc}</p>
-                </div>
+                  <p className="text-[10px] font-medium opacity-60 uppercase">{plan.desc}</p>
+                </button>
               ))}
             </div>
+            <button className="w-full h-14 mt-10 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:brightness-90 active:scale-95 transition-all">
+              Actualizar Suscripción
+            </button>
           </div>
-        </section>
-      </main>
 
-      <footer className="py-20 border-t border-white/5">
-        <div className="container mx-auto px-10 flex flex-col lg:row justify-between items-center gap-10">
-          <div className="flex items-center gap-4 opacity-40 grayscale group hover:grayscale-0 hover:opacity-100 transition-all">
-            <Zap className="w-6 h-6 text-primary" />
-            <span className="text-2xl font-black tracking-[0.2em] uppercase">GastroIA</span>
-          </div>
-          <div className="flex gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-secondary/30">
-            <a href="#" className="hover:text-primary transition-all">Legal Terminal</a>
-            <a href="#" className="hover:text-primary transition-all">Privacy Node</a>
-            <a href="#" className="hover:text-primary transition-all">Security Protocol</a>
+          {/* AI Global Message */}
+          <div className="p-8 bg-primary/10 border border-primary/20 rounded-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-4 opacity-10">
+              <Terminal className="w-20 h-20" />
+            </div>
+            <h5 className="text-[10px] font-black uppercase tracking-widest text-primary mb-4 flex items-center gap-2">
+              <Cpu className="w-4 h-4" /> Global Insight
+            </h5>
+            <p className="text-sm font-bold italic leading-relaxed text-primary/80">
+              "Tu plan actual (Híbrido) está generando un ahorro del 12% comparado con el Plan Premium. Mantén este volumen de ventas o escala para optimizar costos."
+            </p>
           </div>
         </div>
-      </footer>
+      </div>
     </div>
   )
 }
