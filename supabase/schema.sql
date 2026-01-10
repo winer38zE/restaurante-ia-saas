@@ -7,7 +7,9 @@ CREATE TABLE restaurants (
   name TEXT NOT NULL,
   description TEXT,
   logo_url TEXT,
-  slug TEXT UNIQUE NOT NULL, -- Para el menú digital: gastroia.com/menu/[slug]
+  slug TEXT UNIQUE NOT NULL,
+  tarifa_activa TEXT DEFAULT 'basico', -- 'basico', 'premium', 'hibrido'
+  billing_data JSONB DEFAULT '{"base_price": 59000, "per_order_price": 0}',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 

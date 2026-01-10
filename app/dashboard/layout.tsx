@@ -10,7 +10,8 @@ import {
     Zap,
     MessageSquare,
     ChevronRight,
-    Menu
+    Menu,
+    BarChart3
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
@@ -18,6 +19,7 @@ import { useState } from "react"
 const sidebarItems = [
     { icon: LayoutDashboard, label: "Vista General", href: "/dashboard" },
     { icon: UtensilsCrossed, label: "Mi Menú", href: "/dashboard/menu" },
+    { icon: BarChart3, label: "Crecimiento", href: "/dashboard/growth" },
     { icon: MessageSquare, label: "Pedidos IA", href: "/dashboard/orders" },
     { icon: Zap, label: "Herramientas IA", href: "/dashboard/ai" },
     { icon: Settings, label: "Configuración", href: "/dashboard/settings" },
