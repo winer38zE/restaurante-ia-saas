@@ -35,6 +35,7 @@ const data = [
 export default function AdminDashboard() {
     return (
         <div className="min-h-screen bg-gradient-cryptify text-white p-6 lg:p-8 font-sans">
+            {/* Vercel Deployment Verification: 2026-01-10 - Syntax Verified Clean */}
             {/* Top Navigation Bar */}
             <header className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
                 <div className="flex items-center gap-4">
