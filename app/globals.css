@@ -2,11 +2,10 @@
 
 :root {
   --background: #000000;
-  --foreground: #10b981;
-  /* Emerald 500 */
+  --foreground: #ffffff;
   --primary: #10b981;
-  --emerald-low: rgba(16, 185, 129, 0.1);
-  --emerald-mid: rgba(16, 185, 129, 0.3);
+  --glass: rgba(10, 10, 10, 0.6);
+  --border-emerald: rgba(16, 185, 129, 0.2);
 }
 
 @theme inline {
@@ -19,37 +18,29 @@
   body {
     background: var(--background);
     color: var(--foreground);
-    @apply antialiased selection:bg-primary/20 cursor-crosshair;
-    font-family: 'JetBrains Mono', 'Inter', monospace;
-    letter-spacing: -0.02em;
-  }
-
-  * {
-    border-color: var(--emerald-low);
+    @apply antialiased selection:bg-primary/20;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 }
 
-.command-card {
-  @apply bg-black border border-primary/20 rounded-none p-6 backdrop-blur-3xl transition-all hover:border-primary/60 hover:shadow-[0_0_20px_rgba(16, 185, 129, 0.1)];
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-emerald);
+  @apply rounded-xl p-8 transition-all hover:bg-white/5;
 }
 
-.glass-emerald {
-  background: rgba(16, 185, 129, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(16, 185, 129, 0.1);
+.nav-link {
+  @apply flex items-center gap-4 px-4 py-3 rounded-lg text-white/40 hover:text-white hover:bg-white/5 transition-all;
 }
 
-.terminal-text {
-  @apply font-mono uppercase tracking-[0.2em] text-[10px];
+.nav-link-active {
+  @apply text-primary bg-primary/5;
 }
 
-.glow-emerald {
-  box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
-}
-
-.system-btn {
-  @apply border border-primary text-primary px-10 py-4 font-black uppercase tracking-[0.3em] text-[12px] hover:bg-primary hover:text-black transition-all active:scale-95;
+#nprogress .bar {
+  background: var(--primary) !important;
 }
 
 .no-scrollbar::-webkit-scrollbar {
