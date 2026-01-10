@@ -9,10 +9,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className="flex h-screen bg-black overflow-hidden selection:bg-primary/20">
+      <body className="min-h-screen bg-black text-white overflow-x-hidden selection:bg-emerald-500/20">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto p-12 custom-scrollbar">
-          {children}
+        <main className="pl-16 min-h-screen">
+          <div className="p-8 lg:p-12 max-w-[1600px] mx-auto">
+            {children}
+          </div>
         </main>
       </body>
     </html>

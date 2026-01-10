@@ -16,9 +16,7 @@
 
 @layer base {
   body {
-    background: var(--background);
-    color: var(--foreground);
-    @apply antialiased selection:bg-primary/20;
+    @apply bg-gradient-to-br from-slate-950 via-slate-900 to-black min-h-screen text-white antialiased selection:bg-emerald-500/20;
     font-family: 'Inter', system-ui, sans-serif;
   }
 }
