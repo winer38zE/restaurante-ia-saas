@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍽️ GastroIA - Restaurant SaaS con Inteligencia Artificial
 
-## Getting Started
+GastroIA es una plataforma moderna diseñada para revolucionar la gestión de restaurantes mediante el uso de Inteligencia Artificial. Permite a los dueños de restaurantes generar menús digitales, optimizar descripciones de platos y gestionar pedidos de forma eficiente.
 
-First, run the development server:
+## 🚀 Características
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Landing Page Premium**: Diseño moderno y persuasivo para atraer nuevos clientes.
+- **Dashboard de Gestión**: Panel administrativo para control total del restaurante y el menú.
+- **IA Menu Assistant**: Generación automática de descripciones irresistibles para tus platos.
+- **Menú Digital QR**: Interfaz móvil optimizada para que tus clientes ordenen desde la mesa.
+- **Backend Escalable**: Preparado para Supabase (Auth, Postgres, Realtime).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: [Next.js 14+](https://nextjs.org) (App Router)
+- **Estilos**: [Tailwind CSS](https://tailwindcss.com) + OKLCH Colors
+- **Iconos**: [Lucide React](https://lucide.dev)
+- **Animaciones**: [Framer Motion](https://www.framer.com/motion/)
+- **Base de Datos**: [Supabase](https://supabase.com) (Esquema incluido en `/supabase`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏁 Inicio Rápido
 
-## Learn More
+1. Instala las dependencias:
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Ejecuta el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Abre [http://localhost:3000](http://localhost:3000) para ver la landing page.
+4. Explora el panel en [http://localhost:3000/dashboard](http://localhost:3000/dashboard).
+5. Mira un menú de ejemplo en [http://localhost:3000/menu/demo-rest](http://localhost:3000/menu/demo-rest).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🗄️ Base de Datos
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Encuentra el script de inicialización en `supabase/schema.sql`. Puedes pegarlo directamente en el SQL Editor de tu proyecto Supabase.
