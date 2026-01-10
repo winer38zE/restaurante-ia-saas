@@ -11,7 +11,7 @@ import {
     MessageSquare,
     ChevronRight,
     Menu,
-    BarChart3
+    DollarSign
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
@@ -19,10 +19,9 @@ import { useState } from "react"
 const sidebarItems = [
     { icon: LayoutDashboard, label: "Vista General", href: "/dashboard" },
     { icon: UtensilsCrossed, label: "Mi Menú", href: "/dashboard/menu" },
-    { icon: BarChart3, label: "Crecimiento", href: "/dashboard/growth" },
+    { icon: DollarSign, label: "Finanzas Elite", href: "/admin/finanzas" },
     { icon: MessageSquare, label: "Pedidos IA", href: "/dashboard/orders" },
-    { icon: Zap, label: "Herramientas IA", href: "/dashboard/ai" },
-    { icon: Settings, label: "Configuración", href: "/dashboard/settings" },
+    { icon: Settings, label: "Ajustes", href: "/dashboard/settings" },
 ]
 
 export default function DashboardLayout({
@@ -34,34 +33,36 @@ export default function DashboardLayout({
     const [collapsed, setCollapsed] = useState(false)
 
     return (
-        <div className="flex min-h-screen bg-background text-foreground">
-            {/* Sidebar */}
+        <div className="flex min-h-screen bg-background text-foreground selection:bg-primary/20">
+            {/* Sidebar Minimalist Elite */}
             <aside className={cn(
-                "fixed left-0 top-0 h-full border-r border-border bg-card/30 backdrop-blur-xl transition-all duration-300 z-50",
-                collapsed ? "w-20" : "w-64"
+                "fixed left-0 top-0 h-full border-r border-border/30 bg-background transition-all duration-500 z-50",
+                collapsed ? "w-24" : "w-72"
             )}>
-                <div className="flex h-20 items-center px-6 gap-3">
-                    <div className="flex h-10 w-10 min-w-[2.5rem] items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20">
+                <div className="flex h-32 items-center px-8">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-background shadow-2xl shadow-primary/20">
                         <Zap className="h-6 w-6" />
                     </div>
-                    {!collapsed && <span className="text-xl font-bold tracking-tight">GastroIA</span>}
+                    {!collapsed && (
+                        <div className="ml-4">
+                            <span className="text-2xl font-black tracking-tighter">GastroIA</span>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-primary leading-none">Empire Edition</p>
+                        </div>
+                    )}
                 </div>
 
-                <nav className="flex flex-col gap-2 p-4 pt-10">
+                <nav className="flex flex-col gap-2 p-6 pt-4">
                     {sidebarItems.map((item) => (
                         <Link
                             key={item.href}
                             href={item.href}
                             className={cn(
-                                "flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group",
-                                pathname === item.href
-                                    ? "bg-primary text-white shadow-lg shadow-primary/20"
-                                    : "hover:bg-secondary text-foreground/60 hover:text-foreground"
+                                "sidebar-item",
+                                pathname === item.href && "sidebar-item-active"
                             )}
                         >
-                            <item.icon className={cn("h-5 w-5", pathname === item.href ? "text-white" : "group-hover:text-primary")} />
-                            {!collapsed && <span className="font-semibold text-sm">{item.label}</span>}
-                            {!collapsed && pathname === item.href && <ChevronRight className="ml-auto h-4 w-4" />}
+                            <item.icon className="h-5 w-5 flex-shrink-0" />
+                            {!collapsed && <span className="font-bold text-sm tracking-tight">{item.label}</span>}
                         </Link>
                     ))}
                 </nav>

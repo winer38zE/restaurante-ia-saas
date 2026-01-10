@@ -1,16 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: oklch(0.1 0.01 250);
-  --foreground: oklch(0.95 0.01 250);
-  --primary: oklch(0.6 0.15 35);
-  /* Naranja Terracota */
-  --secondary: oklch(0.15 0.02 250);
-  --accent: oklch(0.7 0.1 150);
-  --card: oklch(0.13 0.02 250);
-  --card-foreground: oklch(0.98 0 0);
-  --border: oklch(0.2 0.02 250);
-  --muted: oklch(0.25 0.01 250);
+  --background: #020617;
+  /* Slate 950 */
+  --foreground: #f8fafc;
+  /* Slate 50 */
+  --primary: #10b981;
+  /* Emerald 500 - Money */
+  --secondary: #f59e0b;
+  /* Amber 500 - Food */
+  --muted: #1e293b;
+  /* Slate 800 */
+  --border: #334155;
+  /* Slate 700 */
+  --card: #0f172a;
+  /* Slate 900 */
 }
 
 @theme inline {
@@ -18,11 +22,9 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-border: var(--border);
   --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-card: var(--card);
 }
 
 @layer base {
@@ -33,29 +35,30 @@
   body {
     background: var(--background);
     color: var(--foreground);
-    @apply antialiased selection:bg-primary/30;
+    @apply antialiased selection:bg-primary/20;
+    font-family: var(--font-geist-sans), sans-serif;
   }
 }
 
-.glass {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+.elite-card {
+  @apply bg-card border border-border/50 rounded-3xl p-8 transition-all hover:border-primary/30;
 }
 
-.glass-dark {
-  background: rgba(0, 0, 0, 0.4);
+.sidebar-item {
+  @apply flex items-center gap-4 px-6 py-4 rounded-2xl text-foreground/40 hover:text-foreground hover:bg-muted/50 transition-all;
+}
+
+.sidebar-item-active {
+  @apply bg-muted text-primary;
+}
+
+.glass-elite {
+  background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
