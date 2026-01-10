@@ -1,20 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020617;
-  /* Slate 950 */
-  --foreground: #f8fafc;
-  /* Slate 50 */
+  --background: #050505;
+  /* Deep Space Black */
+  --foreground: #ffffff;
   --primary: #10b981;
-  /* Emerald 500 - Money */
-  --secondary: #f59e0b;
-  /* Amber 500 - Food */
-  --muted: #1e293b;
-  /* Slate 800 */
-  --border: #334155;
-  /* Slate 700 */
-  --card: #0f172a;
-  /* Slate 900 */
+  /* Neon Emerald */
+  --secondary: #94a3b8;
+  /* Titanium Silver */
+  --glass: rgba(10, 10, 10, 0.7);
+  --border-neon: rgba(16, 185, 129, 0.2);
+  --border-muted: rgba(255, 255, 255, 0.05);
 }
 
 @theme inline {
@@ -22,41 +18,49 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
-  --color-muted: var(--muted);
-  --color-border: var(--border);
-  --color-card: var(--card);
 }
 
 @layer base {
   * {
-    border-color: var(--border);
+    border-color: var(--border-muted);
   }
 
   body {
     background: var(--background);
     color: var(--foreground);
     @apply antialiased selection:bg-primary/20;
-    font-family: var(--font-geist-sans), sans-serif;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.05em;
   }
 }
 
-.elite-card {
-  @apply bg-card border border-border/50 rounded-3xl p-8 transition-all hover:border-primary/30;
+.glass-luxury {
+  background: var(--glass);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-muted);
 }
 
-.sidebar-item {
-  @apply flex items-center gap-4 px-6 py-4 rounded-2xl text-foreground/40 hover:text-foreground hover:bg-muted/50 transition-all;
+.glass-neon {
+  background: rgba(16, 185, 129, 0.03);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--border-neon);
 }
 
-.sidebar-item-active {
-  @apply bg-muted text-primary;
+.glow-emerald {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
 }
 
-.glass-elite {
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+.cyber-terminal {
+  @apply bg-background border border-border-muted font-mono text-[10px] tracking-widest uppercase py-1 px-2 rounded-sm;
+}
+
+.premium-card {
+  @apply glass-luxury rounded-2xl p-8 transition-all hover:bg-white/5 active:scale-[0.99];
+}
+
+.cyber-button {
+  @apply bg-primary text-black font-black uppercase tracking-[0.2em] text-[10px] h-12 px-8 rounded-sm hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20;
 }
 
 .no-scrollbar::-webkit-scrollbar {

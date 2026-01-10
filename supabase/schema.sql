@@ -8,8 +8,8 @@ CREATE TABLE restaurants (
   description TEXT,
   logo_url TEXT,
   slug TEXT UNIQUE NOT NULL,
-  plan_tipo TEXT DEFAULT 'basico', -- 'basico', 'premium', 'hibrido'
-  billing_data JSONB DEFAULT '{"base_price": 59000, "per_order_price": 0}',
+  plan_tipo TEXT DEFAULT 'smart-hybrid', -- 'elite', 'smart-hybrid'
+  billing_data JSONB DEFAULT '{"base_price": 40000, "per_order_price": 100}',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 

@@ -2,58 +2,59 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { ChefHat, Smartphone, Zap, BarChart3, ChevronRight, Target } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { Zap, Target, Activity, Cpu, ChevronRight } from "lucide-react"
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30">
-      {/* Navbar Minimalist */}
-      <nav className="fixed top-0 w-full z-100 border-b border-white/5 bg-background/50 backdrop-blur-2xl">
-        <div className="container mx-auto px-10 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary/20 border border-primary/20 rounded-2xl flex items-center justify-center">
-              <Zap className="text-primary w-5 h-5" />
+    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/20">
+      {/* Navigator Hub */}
+      <nav className="fixed top-0 w-full z-100 glass-luxury border-b border-white/5">
+        <div className="container mx-auto px-10 h-24 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-sm flex items-center justify-center text-primary glow-emerald">
+              <Zap className="w-6 h-6" />
             </div>
-            <span className="text-2xl font-black tracking-tighter">GastroIA</span>
+            <div>
+              <span className="text-2xl font-black tracking-[0.2em] uppercase leading-none">GastroIA</span>
+              <p className="text-[8px] font-bold text-primary tracking-[0.3em] uppercase mt-1">SaaS Force One</p>
+            </div>
           </div>
-          <div className="hidden lg:flex items-center gap-12 text-[10px] font-black uppercase tracking-widest text-foreground/40">
-            <a href="#growth" className="hover:text-primary transition-all">Crecimiento</a>
-            <a href="#intelligence" className="hover:text-primary transition-all">Inteligencia</a>
-            <a href="#pricing" className="hover:text-primary transition-all">Planes</a>
+          <div className="hidden lg:flex items-center gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-secondary">
+            <a href="#architecture" className="hover:text-primary transition-all">Architecture</a>
+            <a href="#intelligence" className="hover:text-primary transition-all">Intelligence</a>
+            <a href="#admin" className="hover:text-primary transition-all">Command</a>
           </div>
-          <button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-95">
-            Reservar Demo
+          <button className="cyber-button">
+            Initialize
           </button>
         </div>
       </nav>
 
       <main>
-        {/* Luxury Hero Section */}
-        <section className="relative pt-40 pb-32 container mx-auto px-10">
+        {/* Cyber Hero Section */}
+        <section className="relative pt-60 pb-40 container mx-auto px-10">
           <div className="grid lg:grid-cols-2 gap-24 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-primary/10 border border-primary/10 text-primary text-[10px] font-black uppercase tracking-widest mb-10">
-                <Target className="w-3 h-3" />
-                SaaS B2B para Gastronomía
+              <div className="mb-10 flex items-center gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full animate-ping" />
+                <span className="cyber-terminal">Status: Ready for Deployment</span>
               </div>
-              <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-10">
-                No abras un restaurante, construye un <span className="text-primary italic">Imperio.</span>
+              <h1 className="text-7xl md:text-9xl font-black tracking-tighter leading-[0.8] mb-12 uppercase italic">
+                Construye un <span className="text-primary">Imperio</span> <span className="text-secondary/20">Sintético.</span>
               </h1>
-              <p className="text-lg md:text-xl text-foreground/40 mb-12 max-w-xl leading-relaxed font-medium">
-                GastroIA combina gestión inteligente con educación financiera para transformar tu pasión en rentabilidad extrema.
+              <p className="text-lg md:text-xl text-secondary mb-16 max-w-xl leading-relaxed font-medium">
+                GastroIA es la columna vertebral tecnológica para restaurantes de ultra-lujo. Gestión financiera, mentoría IA y escalabilidad global en una sola terminal.
               </p>
-              <div className="flex flex-col sm:row gap-6">
-                <button className="h-16 px-10 bg-primary text-white rounded-3xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 group transition-all hover:shadow-3xl hover:shadow-primary/40 active:scale-95">
-                  Iniciar Crecimiento
-                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <div className="flex flex-col sm:flex-row gap-8">
+                <button className="cyber-button h-16 px-12 text-xs">
+                  Aceder al Comando Central
                 </button>
-                <button className="h-16 px-10 bg-secondary text-foreground rounded-3xl font-black text-xs uppercase tracking-widest border border-border hover:bg-border transition-all active:scale-95">
-                  Ver Arquitectura
+                <button className="h-16 px-12 glass-luxury border-white/10 text-secondary rounded-sm font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white/5 transition-all">
+                  Ver Blueprint
                 </button>
               </div>
             </motion.div>
@@ -61,106 +62,83 @@ export default function LandingPage() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              transition={{ duration: 1.2, delay: 0.2 }}
               className="relative"
             >
-              <div className="aspect-[4/3] rounded-[4rem] overflow-hidden border border-white/5 relative group">
+              <div className="aspect-[4/3] rounded-sm overflow-hidden border border-white/5 relative group glass-luxury">
                 <Image
                   src="/hero.png"
-                  alt="Imperio Gastronómico"
+                  alt="Cyber Gastronomy"
                   fill
-                  className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-[2s]"
+                  className="object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-[3s]"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-black/20" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
 
-                {/* Micro Dashboard UI */}
-                <div className="absolute top-10 left-10 p-6 glass-dark rounded-[2.5rem] border border-white/10 animate-vertical-float">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-2">Rentabilidad</p>
-                  <p className="text-3xl font-black text-white">+42%</p>
-                  <div className="flex gap-1 mt-3">
-                    {[40, 70, 50, 90, 60].map((h, i) => (
-                      <div key={i} className="w-1.5 bg-primary/60 rounded-full" style={{ height: h + '%' }} />
-                    ))}
+                {/* Floating Terminal Data */}
+                <div className="absolute top-10 left-10 p-6 glass-neon rounded-sm border-primary/20 animate-vertical-float">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Activity className="w-3 h-3 text-primary" />
+                    <span className="text-[8px] font-black uppercase tracking-widest text-primary">Marginal Flow</span>
                   </div>
+                  <p className="text-4xl font-black text-white italic">+32.5%</p>
+                </div>
+
+                <div className="absolute bottom-10 right-10 p-6 glass-luxury border-white/10 rounded-sm">
+                  <p className="text-[8px] font-black uppercase tracking-widest text-secondary/40 mb-2">Neural Node: 0x42F</p>
+                  <p className="text-lg font-black uppercase tracking-widest">Optimized</p>
                 </div>
               </div>
-              {/* Orbs */}
-              <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -z-1" />
-              <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-accent/10 rounded-full blur-[100px] -z-1" />
+              {/* Cyber Orbs */}
+              <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-[150px] -z-1" />
             </motion.div>
           </div>
         </section>
 
-        {/* Intelligence Section */}
-        <section id="intelligence" className="py-32 border-y border-white/5">
+        {/* Technical Architecture */}
+        <section id="architecture" className="py-40 border-y border-white/5">
           <div className="container mx-auto px-10">
-            <div className="grid md:grid-cols-2 gap-20 items-end mb-24">
-              <h2 className="text-5xl font-black tracking-tighter leading-none">Inteligencia que enseña.</h2>
-              <p className="text-foreground/40 text-lg font-medium">Nuestro motor Groq no solo genera menús, audita tus finanzas en tiempo real y te enseña a manejar tu flujo de caja como un CFO.</p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-10">
+            <div className="grid lg:grid-cols-3 gap-16">
               {[
                 {
-                  icon: <BarChart3 className="w-6 h-6" />,
-                  title: "Auditoría Financiera",
-                  desc: "Detección automática de fugas de capital en insumos y personal."
+                  icon: <Target className="w-6 h-6" />,
+                  title: "Alta Precisión",
+                  desc: "Márgenes calculados al centavo mediante algoritmos de auditoría sintética."
                 },
                 {
-                  icon: <Smartphone className="w-6 h-6" />,
-                  title: "UX Mobile-First",
-                  desc: "Experiencia sin fricción para tus comensales y eficiencia crítica para tu cocina."
+                  icon: <Cpu className="w-6 h-6" />,
+                  title: "Núcleo Mentor IA",
+                  desc: "Un agente autónomo que aprende de tus platos y optimiza tus precios 24/7."
                 },
                 {
                   icon: <Zap className="w-6 h-6" />,
-                  title: "Escalabilidad Pura",
-                  desc: "Arquitectura Serverless que crece contigo, desde 1 hasta 100 locales."
+                  title: "Despliegue Global",
+                  desc: "Infraestructura serverless preparada para imperios de 100+ locaciones."
                 }
               ].map((f, i) => (
-                <div key={i} className="p-10 rounded-[3rem] bg-card border border-border group hover:border-primary/20 transition-all duration-500">
-                  <div className="w-16 h-16 rounded-[2rem] bg-secondary text-primary flex items-center justify-center mb-8 border border-white/5 group-hover:scale-110 transition-transform">
+                <div key={i} className="group p-10 glass-luxury border-white/5 hover:border-primary/20 transition-all duration-700">
+                  <div className="w-16 h-16 rounded-sm bg-primary/5 text-primary flex items-center justify-center mb-10 border border-primary/10 group-hover:glow-emerald group-hover:scale-110 transition-all">
                     {f.icon}
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 tracking-tight">{f.title}</h3>
-                  <p className="text-foreground/40 leading-relaxed font-medium">{f.desc}</p>
+                  <h3 className="text-2xl font-black mb-6 tracking-tighter uppercase italic">{f.title}</h3>
+                  <p className="text-secondary leading-relaxed font-medium text-sm">{f.desc}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Call to Action Minimal */}
-        <section className="py-40">
-          <div className="container mx-auto px-10 text-center">
-            <div className="max-w-4xl mx-auto p-20 rounded-[5rem] bg-primary relative overflow-hidden shadow-4xl shadow-primary/20">
-              <div className="relative z-10 text-white">
-                <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-none mb-10">Únete a la nueva era del B2B.</h2>
-                <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto font-medium">
-                  GastroIA es el sistema operativo para tu éxito financiero.
-                </p>
-                <div className="flex flex-col sm:row justify-center gap-6">
-                  <button className="h-16 px-12 bg-white text-primary rounded-3xl font-black text-xs uppercase tracking-widest hover:scale-[1.05] transition-transform active:scale-95 shadow-2xl">
-                    Empezar Ahora
-                  </button>
-                </div>
-              </div>
-              <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:20px_20px]" />
             </div>
           </div>
         </section>
       </main>
 
       <footer className="py-20 border-t border-white/5">
-        <div className="container mx-auto px-10 flex flex-col md:row justify-between items-center gap-10">
-          <div className="flex items-center gap-3 opacity-30 group">
-            <Zap className="w-5 h-5 group-hover:text-primary transition-colors" />
-            <span className="text-xl font-black tracking-tighter">GastroIA</span>
+        <div className="container mx-auto px-10 flex flex-col lg:row justify-between items-center gap-10">
+          <div className="flex items-center gap-4 opacity-40 grayscale group hover:grayscale-0 hover:opacity-100 transition-all">
+            <Zap className="w-6 h-6 text-primary" />
+            <span className="text-2xl font-black tracking-[0.2em] uppercase">GastroIA</span>
           </div>
-          <div className="flex gap-12 text-[10px] font-black uppercase tracking-widest text-foreground/20">
-            <a href="#" className="hover:text-foreground transition-colors">Infraestructura</a>
-            <a href="#" className="hover:text-foreground transition-colors">Seguridad</a>
-            <a href="#" className="hover:text-foreground transition-colors">Legal</a>
+          <div className="flex gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-secondary/30">
+            <a href="#" className="hover:text-primary transition-all">Legal Terminal</a>
+            <a href="#" className="hover:text-primary transition-all">Privacy Node</a>
+            <a href="#" className="hover:text-primary transition-all">Security Protocol</a>
           </div>
         </div>
       </footer>
