@@ -89,25 +89,25 @@ export default function RootDashboard() {
       <div className="grid lg:grid-cols-12 gap-6 min-h-[500px]">
 
         {/* Chart Area */}
-        <div className="lg:col-span-8 glass-card !p-0 overflow-hidden flex flex-col">
-          <div className="p-6 border-b border-white/5 flex justify-between items-center">
-            <h3 className="text-sm uppercase tracking-widest text-zinc-400 font-medium flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-emerald-500" />
+        <div className="lg:col-span-8 glass-panel !p-0 overflow-hidden flex flex-col border-white/10">
+          <div className="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
+            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 text-emerald-400" />
               Capital Flow Analysis
             </h3>
             <div className="flex gap-4">
-              <span className="text-[10px] text-zinc-600 uppercase">Intraday</span>
-              <span className="text-[10px] text-white uppercase border-b border-emerald-500">Weekly</span>
-              <span className="text-[10px] text-zinc-600 uppercase">Monthly</span>
+              <span className="text-[10px] text-gray-500 font-bold uppercase cursor-pointer hover:text-white transition-colors">Intraday</span>
+              <span className="text-[10px] text-emerald-400 font-bold uppercase border-b border-emerald-500 pb-0.5">Weekly</span>
+              <span className="text-[10px] text-gray-500 font-bold uppercase cursor-pointer hover:text-white transition-colors">Monthly</span>
             </div>
           </div>
 
-          <div className="flex-1 w-full bg-gradient-to-b from-transparent to-emerald-900/5 relative">
+          <div className="flex-1 w-full relative">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={data} margin={{ top: 20, right: 0, left: 0, bottom: 0 }}>
                 <defs>
-                  <linearGradient id="colorVentas" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.2} />
+                  <linearGradient id="colorEmerald" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
                     <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
                   </linearGradient>
                 </defs>
@@ -116,28 +116,29 @@ export default function RootDashboard() {
                   dataKey="name"
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fill: '#52525b', fontSize: 10 }}
+                  tick={{ fill: '#9ca3af', fontSize: 10, fontWeight: 500 }}
                   dy={10}
                 />
                 <YAxis hide />
                 <Tooltip
                   cursor={{ stroke: '#10b981', strokeWidth: 1, strokeDasharray: '4 4' }}
                   contentStyle={{
-                    backgroundColor: '#000',
-                    border: '1px solid #1f2937',
-                    borderRadius: '0px',
-                    boxShadow: '0 0 20px rgba(0,0,0,0.5)'
+                    backgroundColor: 'rgba(10, 10, 10, 0.8)',
+                    backdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: '12px',
+                    boxShadow: '0 10px 40px -10px rgba(16,185,129,0.2)'
                   }}
-                  itemStyle={{ color: '#10b981', fontSize: '12px', fontFamily: 'monospace' }}
+                  itemStyle={{ color: '#10b981', fontSize: '12px', fontWeight: 'bold' }}
                   labelStyle={{ display: 'none' }}
                 />
                 <Area
                   type="monotone"
                   dataKey="ventas"
                   stroke="#10b981"
-                  strokeWidth={1.5}
+                  strokeWidth={3}
                   fillOpacity={1}
-                  fill="url(#colorVentas)"
+                  fill="url(#colorEmerald)"
                 />
               </AreaChart>
             </ResponsiveContainer>
@@ -173,9 +174,9 @@ export default function RootDashboard() {
               </div>
             </div>
 
-            <button className="w-full mt-8 py-3 px-4 bg-white/5 hover:bg-emerald-500/10 border border-white/10 hover:border-emerald-500/30 text-xs uppercase tracking-widest text-white hover:text-emerald-400 transition-all flex items-center justify-between group">
+            <button className="w-full mt-8 py-3 px-6 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 text-xs font-bold uppercase tracking-widest text-emerald-400 hover:bg-emerald-500 hover:text-white transition-all duration-300 shadow-lg shadow-emerald-500/5 hover:shadow-emerald-500/20 flex items-center justify-between group">
               Execute Action
-              <ArrowUpRight className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-all" />
+              <ArrowUpRight className="w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
             </button>
           </div>
 

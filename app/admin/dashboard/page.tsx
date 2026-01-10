@@ -76,7 +76,7 @@ export default function AdminDashboard() {
                     </div>
 
                     <div className="flex gap-4">
-                        <button className="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-emerald-400 transition-colors">
+                        <button className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:scale-105 transition-all duration-300">
                             Ver Reporte
                         </button>
                         <button className="px-8 py-3 rounded-full font-bold text-white border border-white/20 hover:bg-white/5 transition-colors">
@@ -102,12 +102,12 @@ export default function AdminDashboard() {
                         <ResponsiveContainer width="100%" height="100%">
                             <AreaChart data={data}>
                                 <defs>
-                                    <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                                    <linearGradient id="colorEmerald" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.4} />
                                         <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
                                     </linearGradient>
                                 </defs>
-                                <Area type="monotone" dataKey="value" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorValue)" />
+                                <Area type="monotone" dataKey="value" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorEmerald)" />
                             </AreaChart>
                         </ResponsiveContainer>
                     </div>
