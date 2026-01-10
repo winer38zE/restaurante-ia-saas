@@ -1,4 +1,4 @@
-import { Info, BookOpen } from "lucide-react"
+import { BookOpen } from "lucide-react"
 
 interface EducationalCardProps {
     title: string;
@@ -16,7 +16,7 @@ export function EducationalCard({ title, definition, example }: EducationalCardP
                 <div>
                     <h4 className="font-bold text-lg mb-2 text-primary">{title}</h4>
                     <p className="text-sm text-foreground/70 mb-4 leading-relaxed italic">
-                        "{definition}"
+                        &quot;{definition}&quot;
                     </p>
                     <div className="p-4 rounded-xl bg-background/50 border border-border/50">
                         <p className="text-[10px] font-black uppercase tracking-widest text-foreground/30 mb-1">Ejemplo Práctico</p>

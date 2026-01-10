@@ -16,12 +16,10 @@ import {
   TrendingUp,
   BrainCircuit,
   ArrowUpRight,
-  Zap,
   Activity
 } from "lucide-react"
 
 import { GlassCard } from "@/components/ui/GlassCard"
-import { ModernButton } from "@/components/ui/ModernButton"
 
 const data = [
   { name: "Lun", ventas: 4200, margen: 2800 },
@@ -118,7 +116,7 @@ export default function RootDashboard() {
                   dataKey="name"
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fill: '#52525b', fontSize: 10, textTransform: 'uppercase' }}
+                  tick={{ fill: '#52525b', fontSize: 10 }}
                   dy={10}
                 />
                 <YAxis hide />
@@ -160,7 +158,7 @@ export default function RootDashboard() {
               <div>
                 <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-2">Insight</p>
                 <p className="text-lg font-light leading-relaxed text-zinc-200">
-                  "Revenue projected to exceed target by <span className="text-emerald-400 font-medium">15%</span> this weekend based on current momentum."
+                  &quot;Revenue projected to exceed target by <span className="text-emerald-400 font-medium">15%</span> this weekend based on current momentum.&quot;
                 </p>
               </div>
 
@@ -169,8 +167,8 @@ export default function RootDashboard() {
               <div>
                 <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-2">Recommendation</p>
                 <p className="text-sm text-zinc-400 leading-relaxed font-mono">
-                            > Increase inventory for 'Premium Wagyu' by 20 units.<br />
-                            > Activate 'Weekend Special' campaign.
+                  &gt; Increase inventory for &apos;Premium Wagyu&apos; by 20 units.<br />
+                  &gt; Activate &apos;Weekend Special&apos; campaign.
                 </p>
               </div>
             </div>

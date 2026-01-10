@@ -8,11 +8,7 @@
   --border-emerald: rgba(16, 185, 129, 0.2);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-}
+
 
 @layer base {
   body {
