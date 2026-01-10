@@ -16,17 +16,30 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-slate-950 via-slate-900 to-black min-h-screen text-white antialiased selection:bg-emerald-500/20;
+    @apply bg-[#050505] min-h-screen text-white antialiased selection:bg-emerald-500/30;
     font-family: 'Inter', system-ui, sans-serif;
   }
 }
 
 .glass-card {
-  background: var(--glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-emerald);
-  @apply rounded-xl p-8 transition-all hover:bg-white/5;
+  @apply backdrop-blur-sm bg-zinc-900/30 border border-white/5 rounded-none transition-all hover:bg-zinc-900/50 hover:border-emerald-500/20;
+}
+
+/* Trading Style Utilities */
+.text-label {
+  @apply text-[10px] sm:text-xs font-medium uppercase tracking-[0.2em] text-zinc-500;
+}
+
+.text-value {
+  @apply font-mono font-medium tracking-tight;
+}
+
+.neon-glow {
+  box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.15);
+}
+
+.thin-border {
+  @apply border-b border-white/5;
 }
 
 .nav-link {

@@ -7,7 +7,6 @@ import {
     BrainCircuit,
     Settings,
     Menu,
-    LogOut,
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -25,14 +24,17 @@ export default function Sidebar() {
     const pathname = usePathname()
 
     return (
-        <aside className="fixed left-0 top-0 h-screen w-16 bg-slate-900/80 backdrop-blur-md border-r border-white/10 flex flex-col items-center py-8 z-50">
-            <div className="mb-10">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/20 flex items-center justify-center">
-                    <span className="font-bold text-white text-xl">E</span>
+        <aside className="fixed left-0 top-0 h-screen w-20 bg-black/60 backdrop-blur-md border-r border-white/5 flex flex-col items-center py-8 z-50">
+            <div className="mb-12">
+                <div className="w-10 h-10 flex items-center justify-center">
+                    {/* Minimalist Logo */}
+                    <div className="w-8 h-8 rotate-45 border-2 border-emerald-500/50 flex items-center justify-center">
+                        <div className="w-4 h-4 bg-emerald-500/20 backdrop-blur-sm"></div>
+                    </div>
                 </div>
             </div>
 
-            <nav className="flex-1 flex flex-col gap-6 w-full px-2">
+            <nav className="flex-1 flex flex-col gap-8 w-full px-4 items-center">
                 {sidebarItems.map((item) => {
                     const isActive = pathname === item.href
                     return (
@@ -40,36 +42,26 @@ export default function Sidebar() {
                             key={item.href}
                             href={item.href}
                             className={`
-                relative p-3 rounded-xl transition-all duration-300 group flex justify-center
-                ${isActive ? 'bg-white/10 text-emerald-400' : 'text-slate-400 hover:text-white hover:bg-white/5'}
+                group relative flex justify-center items-center p-2 rounded-lg transition-all duration-300
+                ${isActive ? 'text-emerald-400' : 'text-zinc-600 hover:text-white'}
               `}
                             title={item.label}
                         >
-                            <item.icon className={`w-6 h-6 ${isActive ? 'stroke-[2.5px]' : 'stroke-2'}`} />
+                            <item.icon className="w-5 h-5 stroke-[1.5px]" />
 
-                            {/* Active Indicator */}
+                            {/* Minimal Active Dot */}
                             {isActive && (
-                                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-emerald-500 rounded-r-full" />
+                                <div className="absolute -right-4 w-1 h-1 bg-emerald-500 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
                             )}
-
-                            {/* Tooltip */}
-                            <div className="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 pointer-events-none z-50">
-                                {item.label}
-                            </div>
                         </Link>
                     )
                 })}
             </nav>
 
-            <div className="mt-auto flex flex-col items-center gap-4">
-                <button className="text-slate-500 hover:text-red-400 transition-colors" title="Cerrar Sesión">
-                    <LogOut className="w-5 h-5" />
-                </button>
-                <button className="p-1">
-                    <div className="w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 font-bold text-xs ring-2 ring-transparent hover:ring-emerald-500/50 transition-all">
-                        JD
-                    </div>
-                </button>
+            <div className="mt-auto opacity-40 hover:opacity-100 transition-opacity cursor-pointer">
+                <div className="w-8 h-8 rounded-full border border-white/10 bg-zinc-900 flex items-center justify-center text-[10px] text-zinc-400">
+                    JD
+                </div>
             </div>
         </aside>
     )
