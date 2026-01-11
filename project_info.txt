@@ -1,1 +1,13 @@
-Describe your project and the issue you're facing.
+
+Since there's no previous code to apply the edit to, I'll provide a general response. If you provide the previous code, I'll be happy to help.
+
+To describe a project and an issue, you would typically outline the key aspects of the project, such as its goals, objectives, and any relevant context. Then, you would explain the specific problem you're facing, including any error messages, symptoms, or challenges you're encountering.
+
+Here is a basic example of how you could structure such a description in English:
+
+1. **Project Overview**: Briefly introduce your project, explaining what it aims to achieve and its significance.
+2. **The Issue**: Clearly state the problem you're experiencing, including any relevant details such as error messages, or unexpected behavior.
+
+If you provide the specific details of your project and the issue you're facing, I can offer a more tailored response.
+
+no carga en vercel lo he creado cntigo solo se ve una pagina html ebn blanco hacer esa correcion 
