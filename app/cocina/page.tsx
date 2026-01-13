@@ -4,8 +4,7 @@ import {
     Timer,
     CheckCircle2,
     Hash,
-    ChefHat,
-    AlertCircle
+
 } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
@@ -17,7 +16,7 @@ const initialOrders = [
 ]
 
 export default function KitchenControl() {
-    const [orders, setOrders] = useState(initialOrders)
+    const [orders, ] = useState(initialOrders)
 
     return (
         <div className="max-w-7xl mx-auto space-y-10">
