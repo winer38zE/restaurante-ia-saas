@@ -2,81 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #0a0a0a; /* Fondo oscuro forzado */
-  --foreground: #ededed;
-  --primary: #10b981;
-  --glass: rgba(10, 10, 10, 0.6);
-  --border-emerald: rgba(16, 185, 129, 0.2);
-}
-
-
-
 @layer base {
-  body {
-    @apply bg-[#0a0a0a] min-h-screen text-white antialiased selection:bg-emerald-500/30;
-    font-family: 'Inter', system-ui, sans-serif;
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 6.5%; /* Slightly lighter than bg */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 4%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 153 60% 53%; /* Emerald 500 equivalent in HSL */
+    --primary-foreground: 144 65% 5%; /* Dark green text on primary */
+
+    --secondary: 240 6% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 153 70% 30%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 153 60% 53%; /* Match primary */
+
+    --radius: 1rem;
   }
 }
 
-/* Glassmorphism Avanzado - Base Token */
-.glass-panel {
-  @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl shadow-emerald-500/10 transition-all duration-300;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
-.glass-panel:hover {
-  @apply bg-white/10 border-emerald-500/30;
+/* Custom Scrollbar for that futuristic feel */
+::-webkit-scrollbar {
+  width: 8px;
 }
-
-.glass-card {
-  @apply glass-panel; /* Alias for compatibility */
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
 }
-
-/* Trading Style Utilities */
-.text-label {
-  @apply text-xs font-medium uppercase tracking-[0.2em] text-gray-300;
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
 }
-
-.text-value {
-  @apply font-mono font-bold tracking-tight text-white;
-}
-
-.neon-glow {
-  box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.3);
-}
-
-.thin-border {
-  @apply border-b border-white/5;
-}
-
-.nav-link {
-  @apply flex items-center gap-4 px-4 py-3 rounded-lg text-white/40 hover:text-white hover:bg-white/5 transition-all;
-}
-
-.nav-link-active {
-  @apply text-emerald-400 bg-emerald-500/5 border border-emerald-500/10;
-}
-
-#nprogress .bar {
-  background: var(--primary) !important;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Cryptify / Deepmind FinTech Background */
-.bg-gradient-cryptify {
-  background-color: #0a0a0a;
-  background-image: 
-    radial-gradient(circle at 0% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
-}
-
-.text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400;
-}
-
-.text-gradient-primary {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400 drop-shadow-[0_0_10px_rgba(52,211,153,0.3)];
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
 }
