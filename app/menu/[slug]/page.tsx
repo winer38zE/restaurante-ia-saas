@@ -1,230 +1,245 @@
 "use client"
 
-import { useState } from "react"
 import {
+    TrendingUp,
+    Users,
     ShoppingBag,
-    ChevronLeft,
-    Search,
-    Plus,
-    Info,
-    BarChart3,
-    ChevronRight,
+    Clock,
+    ArrowUpRight,
+    Utensils,
+    ChefHat,
+    DollarSign,
     Star,
-    Flame
+    Flame,
 } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
-import { cn } from "@/lib/utils"
 
-const categories = ["Entradas", "Principales", "Postres", "Bebidas"]
-const menuItems = [
-    { id: 1, name: "Tacos de Ribeye", price: 15.00, desc: "Costilla de res premium con tortilla artesanal y salsa tatemada.", cat: "Entradas", popular: true, image: "/hero.png" },
-    { id: 2, name: "Salmón al Eneldo", price: 28.00, desc: "Salmón fresco a la plancha con costra de hierbas y puré trufado.", cat: "Principales", popular: false, image: "/hero.png" },
-    { id: 3, name: "Volcán de Chocolate", price: 12.00, desc: "Bizcocho tibio de chocolate amargo con centro líquido.", cat: "Postres", popular: true, image: "/hero.png" },
+const stats = [
+    { 
+        label: "Ventas Totales", 
+        value: "$12,450", 
+        change: "+14.5%", 
+        icon: DollarSign, 
+        color: "text-amber-400", 
+        bg: "bg-gradient-to-br from-amber-500/20 to-orange-500/20",
+        borderColor: "border-amber-500/30"
+    },
+    { 
+        label: "Clientes Nuevos", 
+        value: "84", 
+        change: "+5.2%", 
+        icon: Users, 
+        color: "text-emerald-400", 
+        bg: "bg-gradient-to-br from-emerald-500/20 to-teal-500/20",
+        borderColor: "border-emerald-500/30"
+    },
+    { 
+        label: "Pedidos Hoy", 
+        value: "45", 
+        change: "+12.1%", 
+        icon: ShoppingBag, 
+        color: "text-orange-400", 
+        bg: "bg-gradient-to-br from-orange-500/20 to-red-500/20",
+        borderColor: "border-orange-500/30"
+    },
+    { 
+        label: "Tiempo Promedio", 
+        value: "24m", 
+        change: "-2.5%", 
+        icon: Clock, 
+        color: "text-cyan-400", 
+        bg: "bg-gradient-to-br from-cyan-500/20 to-blue-500/20",
+        borderColor: "border-cyan-500/30"
+    },
 ]
 
-export default function PublicMenuPage() {
-    const [cartCount, setCartCount] = useState(0)
-    const [activeCategory, setActiveCategory] = useState("Principales")
-    const [showHistory, setShowHistory] = useState(false)
+const recentOrders = [
+    { id: "1024", item: "Risotto de Trufa Negra", table: "12", time: "5 min", price: "$45", status: "preparing" },
+    { id: "1023", item: "Salmón a la Parrilla", table: "8", time: "8 min", price: "$38", status: "ready" },
+    { id: "1022", item: "Pasta Carbonara Premium", table: "5", time: "12 min", price: "$32", status: "completed" },
+    { id: "1021", item: "Hamburguesa Wagyu", table: "3", time: "15 min", price: "$42", status: "completed" },
+]
 
-    const history = [
-        { date: "Hoy", items: "Hamburguesa Wagyu", total: 24.50 },
-        { date: "Ayer", items: "Pizza Di'Ablo", total: 18.00 },
-        { date: "3 Ene", items: "Pasta Carbonara", total: 16.50 },
-    ]
-
+export default function DashboardPage() {
     return (
-        <div className="min-h-screen bg-background text-foreground pb-24 font-sans">
-            {/* Header */}
-            <div className="sticky top-0 z-50 bg-background/95 border-b border-border px-6 py-4 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <button className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-muted transition-colors">
-                        <ChevronLeft className="w-5 h-5 text-muted-foreground" />
-                    </button>
+        <div className="space-y-8 animate-fadeIn">
+            {/* Header Section - Warm Welcome */}
+            <div className="relative">
+                {/* Background glow effect */}
+                <div className="absolute -top-20 -left-20 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slow" />
+                <div className="absolute -top-10 -right-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-400" />
+                
+                <div className="relative flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                     <div>
-                        <h1 className="font-semibold text-lg leading-none tracking-tight text-foreground">Resort del Sol</h1>
-                        <div className="flex items-center gap-1.5 mt-0.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                            <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wide">Abierto</p>
+                        <div className="flex items-center gap-3 mb-3">
+                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center shadow-lg shadow-orange-500/30">
+                                <Flame className="w-6 h-6 text-white" />
+                            </div>
+                            <div>
+                                <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white">
+                                    Bienvenido, <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">Resort del Sol</span>
+                                </h1>
+                            </div>
                         </div>
+                        <p className="text-gray-400 text-sm ml-15">Dashboard Gastronómico • En tiempo real</p>
                     </div>
-                </div>
-                <div className="flex items-center gap-3">
-                    <button
-                        onClick={() => setShowHistory(!showHistory)}
-                        className={cn(
-                            "w-9 h-9 rounded-full flex items-center justify-center transition-all border",
-                            showHistory 
-                                ? "bg-primary text-primary-foreground border-primary" 
-                                : "bg-transparent border-border text-muted-foreground hover:bg-muted"
-                        )}
-                    >
-                        <BarChart3 className="w-4 h-4" />
-                    </button>
-                    <div className="relative group cursor-pointer">
-                        <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:opacity-90 transition-opacity">
-                            <ShoppingBag className="w-4 h-4" />
-                        </div>
-                        {cartCount > 0 && (
-                            <span className="absolute -top-1 -right-1 w-4 h-4 bg-destructive text-destructive-foreground text-[10px] flex items-center justify-center rounded-full font-bold border-2 border-background">
-                                {cartCount}
-                            </span>
-                        )}
+                    <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 backdrop-blur-sm">
+                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-lg shadow-emerald-500/50" />
+                        <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">Sistema Activo</span>
                     </div>
                 </div>
             </div>
 
-            <AnimatePresence mode="wait">
-                {showHistory ? (
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="p-6 space-y-6"
-                    >
-                        <div className="p-6 rounded-xl bg-muted/30 border border-border">
-                            <div className="mb-4">
-                                <p className="text-muted-foreground text-xs font-medium uppercase tracking-wide mb-1">Tu Estatus</p>
-                                <h2 className="text-2xl font-bold tracking-tight text-foreground">¡Nivel Oro!</h2>
-                                <p className="text-sm text-muted-foreground mt-2 max-w-[90%]">
-                                    Has desbloqueado el postre secreto del chef. Pídelo hoy.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="p-4 rounded-xl bg-card border border-border">
-                                <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wide mb-1">Total Gastado</p>
-                                <h4 className="text-xl font-bold text-foreground">$154k</h4>
-                            </div>
-                            <div className="p-4 rounded-xl bg-card border border-border">
-                                <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wide mb-1">Visitas</p>
-                                <h4 className="text-xl font-bold text-primary">12</h4>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4 px-1">Historial Reciente</h3>
-                            <div className="space-y-2">
-                                {history.map((h, i) => (
-                                    <div key={i} className="flex justify-between items-center p-3 rounded-lg bg-card border border-border">
-                                        <div>
-                                            <p className="font-medium text-foreground text-sm">{h.items}</p>
-                                            <p className="text-[11px] text-muted-foreground mt-0.5">{h.date}</p>
-                                        </div>
-                                        <span className="font-semibold text-sm text-foreground">${h.total.toFixed(2)}</span>
+            {/* Stats Grid - Restaurant Colors */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {stats.map((stat, i) => {
+                    const IconComponent = stat.icon
+                    const isNegative = stat.change.startsWith('-')
+                    return (
+                        <div 
+                            key={i} 
+                            className={`relative overflow-hidden rounded-2xl p-6 border ${stat.borderColor} backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:shadow-2xl group cursor-pointer`}
+                            style={{
+                                background: `linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%)`,
+                            }}
+                        >
+                            {/* Gradient Background */}
+                            <div className={`absolute inset-0 ${stat.bg} opacity-50 group-hover:opacity-70 transition-opacity`} />
+                            
+                            {/* Content */}
+                            <div className="relative z-10">
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className={`p-3 rounded-xl ${stat.bg} ${stat.color} border ${stat.borderColor} shadow-lg`}>
+                                        <IconComponent className="h-6 w-6" />
                                     </div>
-                                ))}
-                            </div>
-                        </div>
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                    >
-                        {/* Hero Section */}
-                        <div className="px-6 py-6">
-                            <div className="h-48 rounded-xl bg-muted relative overflow-hidden flex items-end p-6 cursor-pointer group">
-                                <img src="/hero.png" className="absolute inset-0 w-full h-full object-cover opacity-80" alt="Hero" />
-                                <div className="absolute inset-0 bg-black/40" />
-                                
-                                <div className="relative z-10 w-full">
-                                    <div className="flex justify-between items-end">
-                                        <div>
-                                            <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/20 backdrop-blur-sm mb-2">
-                                                <Flame className="w-3 h-3 text-white" />
-                                                <span className="text-[10px] font-medium text-white uppercase tracking-wide">Recomendado</span>
-                                            </div>
-                                            <h2 className="text-2xl font-bold text-white tracking-tight">Ribeye A5</h2>
-                                        </div>
-                                        <button className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform">
-                                            <Plus className="w-5 h-5" />
-                                        </button>
+                                    <div className={`flex items-center gap-1 ${isNegative ? 'text-rose-400 bg-rose-500/10' : 'text-emerald-400 bg-emerald-500/10'} font-bold text-xs px-3 py-1.5 rounded-full border ${isNegative ? 'border-rose-500/20' : 'border-emerald-500/20'}`}>
+                                        <ArrowUpRight className={`h-3 w-3 ${isNegative ? 'rotate-90' : ''}`} />
+                                        {stat.change}
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        {/* Categories */}
-                        <div className="flex gap-2 overflow-x-auto px-6 mb-6 no-scrollbar pb-1">
-                            {categories.map((cat) => (
-                                <button
-                                    key={cat}
-                                    onClick={() => setActiveCategory(cat)}
-                                    className={`whitespace-nowrap px-4 py-2 rounded-full text-xs font-medium transition-all ${
-                                        activeCategory === cat 
-                                        ? "bg-foreground text-background" 
-                                        : "bg-muted text-muted-foreground hover:bg-muted/80"
-                                    }`}
-                                >
-                                    {cat}
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Menu Items */}
-                        <div className="px-6 space-y-4">
-                            <div className="flex items-center justify-between mb-2 px-1">
-                                <h3 className="text-lg font-semibold text-foreground tracking-tight">{activeCategory}</h3>
+                                <div>
+                                    <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">{stat.label}</p>
+                                    <h2 className="text-4xl font-black text-white tracking-tight">{stat.value}</h2>
+                                </div>
                             </div>
 
-                            {menuItems.map((item) => (
-                                <div 
-                                    key={item.id} 
-                                    className="p-4 rounded-xl bg-card border border-border flex gap-4 hover:border-primary/50 transition-colors"
-                                >
-                                    <div className="w-20 h-20 rounded-lg bg-muted relative overflow-hidden flex-shrink-0">
-                                        <img src="/hero.png" className="w-full h-full object-cover" alt={item.name} />
-                                    </div>
-                                    <div className="flex-1 flex flex-col justify-between py-0.5">
-                                        <div>
-                                            <h4 className="font-medium text-foreground text-sm">{item.name}</h4>
-                                            <p className="text-[11px] text-muted-foreground mt-1 line-clamp-2">
-                                                {item.desc}
-                                            </p>
-                                        </div>
-                                        <div className="flex justify-between items-center mt-2">
-                                            <span className="font-semibold text-sm text-foreground">${item.price.toFixed(2)}</span>
-                                            <button
-                                                onClick={() => setCartCount(c => c + 1)}
-                                                className="w-8 h-8 rounded-md bg-muted text-muted-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all"
-                                            >
-                                                <Plus className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+                            {/* Hover shine effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                         </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    )
+                })}
+            </div>
 
-            {/* Floating Action Button */}
-            <AnimatePresence>
-                {cartCount > 0 && !showHistory && (
-                    <motion.div 
-                        initial={{ y: 50, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: 50, opacity: 0 }}
-                        className="fixed bottom-6 left-6 right-6 z-50"
-                    >
-                        <button className="w-full h-14 bg-foreground text-background rounded-full font-medium text-sm flex items-center justify-between px-6 shadow-xl hover:scale-[1.01] transition-transform">
-                            <span className="flex items-center gap-3">
-                                <div className="bg-background text-foreground w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">
-                                    {cartCount}
-                                </div>
-                                <span>Ver Orden</span>
-                            </span>
-                            <span className="flex items-center gap-2">
-                                Total <ChevronRight className="w-4 h-4" />
-                            </span>
+            {/* Main Content Grid */}
+            <div className="grid lg:grid-cols-3 gap-6">
+                {/* Recent Orders - Premium Look */}
+                <div className="lg:col-span-2 relative overflow-hidden rounded-2xl border border-white/10 backdrop-blur-sm bg-gradient-to-br from-white/5 to-white/[0.02] p-8 hover:border-white/20 transition-all">
+                    {/* Header */}
+                    <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center shadow-lg shadow-orange-500/30">
+                                <ChefHat className="w-5 h-5 text-white" />
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-black text-white">Órdenes Activas</h3>
+                                <p className="text-xs text-gray-500">Gestión en tiempo real</p>
+                            </div>
+                        </div>
+                        <button className="text-xs font-bold text-orange-400 uppercase tracking-widest hover:text-orange-300 transition-colors px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 hover:bg-orange-500/20">
+                            Ver Todas
                         </button>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    </div>
+
+                    {/* Orders List */}
+                    <div className="space-y-3">
+                        {recentOrders.map((order, i) => (
+                            <div 
+                                key={i} 
+                                className="group relative overflow-hidden flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.08] hover:border-white/10 transition-all cursor-pointer"
+                            >
+                                <div className="flex items-center gap-4 flex-1">
+                                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center font-black text-orange-400 text-sm border border-orange-500/30 group-hover:scale-110 transition-transform">
+                                        #{order.id}
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="font-bold text-white text-sm group-hover:text-orange-400 transition-colors">{order.item}</p>
+                                        <div className="flex items-center gap-3 mt-1">
+                                            <p className="text-xs text-gray-500">Mesa {order.table}</p>
+                                            <span className="text-gray-600">•</span>
+                                            <p className="text-xs text-gray-500">{order.time}</p>
+                                            <span className="text-gray-600">•</span>
+                                            <p className="text-xs font-bold text-amber-400">{order.price}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={`px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
+                                    order.status === 'completed' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
+                                    order.status === 'ready' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' :
+                                    'bg-orange-500/10 text-orange-400 border-orange-500/20'
+                                }`}>
+                                    {order.status === 'completed' ? '✓ Entregado' : 
+                                     order.status === 'ready' ? '⚡ Listo' : 
+                                     '🔥 Preparando'}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Quick Actions - Restaurant Theme */}
+                <div className="space-y-6">
+                    {/* AI Menu Generator */}
+                    <div className="relative overflow-hidden rounded-2xl border border-orange-500/20 backdrop-blur-sm bg-gradient-to-br from-orange-500/10 via-amber-500/10 to-red-500/10 p-6 hover:border-orange-500/30 transition-all group">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
+                        
+                        <div className="relative z-10 text-center">
+                            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center shadow-2xl shadow-orange-500/30 group-hover:scale-110 transition-transform">
+                                <Utensils className="w-8 h-8 text-white" />
+                            </div>
+                            <h3 className="text-lg font-black mb-2 text-white">Crear Plato con IA</h3>
+                            <p className="text-gray-400 text-xs mb-6 leading-relaxed">
+                                Genera descripciones gourmet y sugerencias de maridaje automáticamente
+                            </p>
+                            <button className="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold text-sm shadow-2xl shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300 border border-orange-400/20">
+                                Generar Menú
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Quick Stats */}
+                    <div className="relative overflow-hidden rounded-2xl border border-amber-500/20 backdrop-blur-sm bg-gradient-to-br from-amber-500/10 to-yellow-500/10 p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center shadow-lg shadow-amber-500/30">
+                                <Star className="w-5 h-5 text-white" />
+                            </div>
+                            <div>
+                                <h4 className="font-black text-white text-sm">Platos Destacados</h4>
+                                <p className="text-xs text-gray-500">Los más vendidos hoy</p>
+                            </div>
+                        </div>
+                        
+                        <div className="space-y-3">
+                            {[
+                                { name: "Risotto Trufa", sales: 18, trend: "+24%" },
+                                { name: "Salmón Parrilla", sales: 15, trend: "+18%" },
+                                { name: "Pasta Carbonara", sales: 12, trend: "+12%" }
+                            ].map((dish, i) => (
+                                <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-all">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-xs">
+                                            #{i + 1}
+                                        </div>
+                                        <div>
+                                            <p className="font-bold text-white text-xs">{dish.name}</p>
+                                            <p className="text-[10px] text-gray-500">{dish.sales} ventas</p>
+                                        </div>
+                                    </div>
+                                    <span className="text-emerald-400 text-xs font-bold">{dish.trend}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
