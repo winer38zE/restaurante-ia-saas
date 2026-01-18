@@ -32,7 +32,7 @@
     --input: 240 6% 20%;
     --ring: 153 60% 53%; /* Match primary */
 
-    --radius: 1rem;
+    --radius: 0.5rem;
   }
 }
 
@@ -46,16 +46,3 @@
 }
 
 /* Custom Scrollbar for that futuristic feel */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary));
-}
